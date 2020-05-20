@@ -17,7 +17,6 @@ function executeAjax () {
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
-
 			for (var i = 0; i < json.length; i++) {
 
 
