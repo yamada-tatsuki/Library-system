@@ -74,6 +74,7 @@ public class ChangeServlet extends HttpServlet {
 				"WHERE \n" +
 				"BOOK_ID = '"+bookId+"' \n";
 		System.out.println(sql);
+
 		boolean result=true;
 
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
