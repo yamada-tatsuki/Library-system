@@ -62,7 +62,9 @@ public class BooksListServlet extends HttpServlet {
 						"	bo.TITLE, \n" +
 						"	bo.AUTHOR, \n" +
 						"	bo.PUBLISHER, \n" +
-						"	bo.STATUS \n" +
+						"	bo.STATUS, \n" +
+						"	bo.GENRE, \n" +
+						"	bo.REND_DATA \n" +
 						"from \n" +
 						"	 MS_BOOKS bo \n" +
 						"where \n" +
@@ -93,6 +95,8 @@ public class BooksListServlet extends HttpServlet {
 						books.setAuthor(rs1.getString("AUTHOR"));
 						books.setPublisher(rs1.getString("PUBLISHER"));
 						books.setStatus(rs1.getString("STATUS"));
+						books.setGenre(rs1.getString("GENRE"));
+						books.setRend_data(rs1.getInt("REND_DATA"));
 
 						booksList.add(books);
 
