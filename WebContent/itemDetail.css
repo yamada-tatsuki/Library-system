@@ -95,3 +95,37 @@ html, body{
 	transform-origin: left top;
 	transition: all 300ms 0s ease;
 }
+
+/****** テーブル */
+table {
+	/* 枠線 */
+	border-collapse: collapse;
+	border-right: 1px solid #999;
+}
+
+table th {
+	border-collapse: collapse;
+	border: 1px solid #999;
+	/* 内部余白 */
+	padding: 10px;
+	/* 枠線 */
+	border-top: 1px solid #999;
+	/* 文字色 */
+	color: #000;
+	/* 文字表示 */
+	text-align: left;
+	vertical-align: top;
+	/* 背景色 */
+	background-color:#01A9DB;
+}
+
+table td {
+	border-collapse: collapse;
+	border-right: 1px solid #999;
+	/* 内部余白 */
+	padding: 6px;
+	/* 枠線 */
+	border: 1px solid #999;
+	/* 背景色 */
+	background-color: #fff;
+}
