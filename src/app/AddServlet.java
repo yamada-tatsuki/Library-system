@@ -82,6 +82,7 @@ public class AddServlet extends HttpServlet {
 				numberOfBooks=rs1.getInt("NUMBER_BOOKS");
 
 			}
+
 			if(numberOfBooks==0){
 
 
@@ -96,10 +97,11 @@ public class AddServlet extends HttpServlet {
 			else if (numberOfBooks!=0){
 				ResultSet rs3 = stmt.executeQuery(
 								"UPDATE MS_BOOKS  \n" +
-										"SET NUMBER_BOOKS =numberOfBooks+1 \n" +
+										"SET NUMBER_BOOKS ='"+numberOfBooks+"'+1 \n" +
 										"WHERE 1=1 \n" +
 										"and TITLE='"+itemTitle+"' \n" +
 										"and AUTHOR='"+itemAuthor+"' \n");
+
 
 			}
 			// アクセスした人に応答するためのJSONを用意する
