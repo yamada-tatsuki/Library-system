@@ -2,11 +2,14 @@
 function executeAjax () {
 	'use strict';
 
-	var parameter  = location.search.substring( 1, location.search.length );
-	parameter = decodeURIComponent( parameter );
-	parameter = parameter.split('=')[1];
+	//var parameter  = location.search.substring( 1, location.search.length );
+	//parameter = decodeURIComponent( parameter );
+	//parameter = parameter.split('=')[1];
 
-	var requestQuery = { q : parameter} ;
+	var param = GetQueryString();
+	var title = param["title"];
+
+	var requestQuery = { title : title} ;
 	console.dir(requestQuery);
 	$.ajax({
 		type : 'GET',
@@ -14,21 +17,17 @@ function executeAjax () {
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
-			//console.log('返却値',data);
 
-			//for (var i = 0; i < json.length; i++) {
+			for (var i = 0; i < json.length; i++) {
 
-				var element = json[1];
 
-				var param = GetQueryString();
-				console.log(param);
-				var id = param["id"];
+				var elements = json[i];
 
-				$('#js-title').html(element.title);
-				$('#js-author').html(element.author);
-				$('#js-publisher').html(element.publisher);
-				$('#js-genre').html(element.genre);
-				$('#js-status').html(element.status);
+				$('#js-title').html(elements.title);
+				$('#js-author').html(elements.author);
+				$('#js-publisher').html(elements.publisher);
+				$('#js-genre').html(elements.genre);
+				$('#js-status').html(elements.status);
 
 				//var record = '<tr>'
 				//	+ '<td>' + element.title + '</td>'
@@ -40,7 +39,7 @@ function executeAjax () {
 
 				//$('#table_data').append(record)
 			}
-		//}
+		}
 	});
 }
 
