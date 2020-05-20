@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import app.BookDetail;
+
 @WebServlet("/api/bookdetail")
 public class BookDetailServlet extends HttpServlet {
 

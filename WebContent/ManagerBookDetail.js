@@ -1,3 +1,4 @@
+
 function GetQueryTitle() {
     var result = new Object();
     if (1 < document.location.search.length) {
