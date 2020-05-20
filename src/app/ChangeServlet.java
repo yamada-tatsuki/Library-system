@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Servlet implementation class DeleteServlet
+ * Servlet implementation class ChangeServlet
  */
-@WebServlet("/DeleteServlet")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/ChangeServlet")
+public class ChangeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteServlet() {
+    public ChangeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +35,13 @@ public class DeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-    	String itemBookId = request.getParameter("itemBookId");
+    	String itemBoughtOn = request.getParameter("itemBoughtOn");
+    	String itemBoughtBy = request.getParameter("itemBoughtBy");
+    	String itemAuthor = request.getParameter("itemAuthor");
+    	String itemTitle = request.getParameter("itemTitle");
+    	String itemGenre = request.getParameter("itemGenre");
+		String itemPublisher = request.getParameter("itemPublisher");
+		String itemBookId=request.getParameter("itemBookId");
 
 
 
@@ -55,11 +61,17 @@ public class DeleteServlet extends HttpServlet {
 		String pass = "wc";
 
 		// 実行するSQL文
-		String sql ="delete from MS_BOOKS \n" +
-				"where  \n" +
-				"BOOK_ID='"+itemBookId+"'";
-
-		System.out.println(sql);
+		String sql ="UPDATE \n" +
+				"MS_BOOKS \n" +
+				"SET \n" +
+				"BOUGHT_ON='"+itemBoughtOn+"', \n" +
+				"BOUGHT_BY='"+itemBoughtBy+"', \n" +
+				"AUTHOR='"+itemAuthor+"', \n" +
+				"TITLE='"+itemTitle+"', \n" +
+				"GENRE='"+itemGenre+"', \n" +
+				"PUBLISHER='"+itemPublisher+"' \n" +
+				"WHERE \n" +
+				"BOOK_ID = '"+itemBookId+"' \n";
 		boolean result=true;
 
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
@@ -73,7 +85,7 @@ public class DeleteServlet extends HttpServlet {
 			// SQLの命令文を実行し、その件数をint型のresultCountに代入します
 			int resultCount = stmt.executeUpdate(sql);
 			if(resultCount!=1){
-				result=false;
+				result=true;
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
