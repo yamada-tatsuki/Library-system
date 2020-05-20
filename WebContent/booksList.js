@@ -60,12 +60,22 @@ function booksSearch(){
 	var inputGenre = $('#genre').val();
 	var inputFrequency = $('#frequency').val();
 
-	var requestQuery = {
-		title : inputTitle,
-		author : inputAuthor,
-		genre : inputGenre,
-		//frequency : inputFrequency,//図書管理者用のページを表示するときにfrequencyを入れる
+	if(userRole.equals("MEMBER")){
+		var requestQuery = {
+				title : inputTitle,
+				author : inputAuthor,
+				genre : inputGenre,
+				//frequency : inputFrequency,//図書管理者用のページを表示するときにfrequencyを入れる
+			};
+	}else{
+		var requestQuery = {
+				title : inputTitle,
+				author : inputAuthor,
+				genre : inputGenre,
+				frequency : inputFrequency,//図書管理者用のページを表示するときにfrequencyを入れる
+			}
 	}
+
 	console.log(requestQuery);
 	$.ajax({
 		type: 'GET',
