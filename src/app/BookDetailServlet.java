@@ -23,6 +23,7 @@ public class BookDetailServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
+
 		String title = request.getParameter("title");
 		System.out.println("title="+title);
 
