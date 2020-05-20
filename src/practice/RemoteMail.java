@@ -42,8 +42,8 @@ public class RemoteMail {
 	};
 
 	public static void main(String[] args) throws IOException {
-		CommonsMailSample sendMail = new CommonsMailSample();
-		sendMail.send("Commons Email テストメール", "テストメールの本文");
+		RemoteMail sendMail = new RemoteMail();
+		sendMail.send("Commons Email テストメール", "これはテストです。");
 	}
 
 	public void send(String subject, String content) {
