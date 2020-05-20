@@ -9,12 +9,10 @@ var registItem = function () {
 	var requestQuery = {
 			itemTitle:inputItemTitle,
 			itemAuthor:inputItemAuthor,
-
 			itemPublisher:inputItemPublisher,
 			itemGenre:inputItemGenre,
 			itemBoughtOn:inputItemBoughtOn,
 			itemBoughtBy:inputItemBoughtBy
-
 	};
 	console.log('requestQuery',requestQuery);
 	// サーバーにデータを送信する。

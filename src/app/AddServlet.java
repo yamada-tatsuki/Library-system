@@ -100,7 +100,6 @@ public class AddServlet extends HttpServlet {
 
 										"SET NUMBER_BOOKS ='"+numberOfBooks+"'+1 \n" +
 
-
 										"WHERE 1=1 \n" +
 										"and TITLE='"+itemTitle+"' \n" +
 										"and AUTHOR='"+itemAuthor+"' \n");
