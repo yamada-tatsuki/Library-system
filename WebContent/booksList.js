@@ -16,7 +16,7 @@ function getSessionInfo(){
 				location.href = '' //'ログインページ'
 			}else{
 				userRole = json.role//変数名未定
-				user
+				loginStatus = json.result
 			}
 		}
 	})
@@ -38,10 +38,10 @@ function executeAjax(){
 				'<td>'+ json[i].author+'</td>'+
 				'<td>'+ json[i].status+'</td>'+
 				'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
-				if(userRole.quals("MANAGER")){
-					'<td>'+'<input type="button" value="編集" id="syain_edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'+
-					'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
-				};
+//				if(userRole.quals("MANAGER")){
+//					'<td>'+'<input type="button" value="編集" id="syain_edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'+
+//					'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
+//				};
 				+'</tr>';
 
 				$('#booksTable').append(row);
@@ -93,14 +93,27 @@ function booksSearch(){
 					'<td>'+ '<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
 					'<td>'+ json[i].author+'</td>'+
 					'<td>'+ json[i].status+'</td>'+
-					'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>'+ //ロールが図書管理者のとき、編集削除ボタンをつける
-					'</tr>';
+					'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>'//ロールが図書管理者のとき、編集削除ボタンをつける
+//					if(userRole.quals("MANAGER")){
+//						'<td>'+'<input type="button" value="編集" id="syain_edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'+
+//						'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
+//					};
+					+'</tr>';
+
+					+'</tr>';
 
 					$('#booksTable').append(row);
 				}
 			}
 		}
 	});
+}
+
+//削除機能（画面から）
+var deletion = function(o,syainId){
+	console.log('aaa');
+	//ディスプレイから表示を消す
+	var TR = o.parentNode.parentNode;
 }
 
 //プルダウンリストにジャンルを表示
