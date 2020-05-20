@@ -2,7 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>蔵書一覧ページ</title>
+<!-- <link rel="stylesheet" type="text/css" href="ListPage.css"> -->
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="booksList.js"></script>
 </head>
 <header>
 	<input type="button" value="ログアウト" id="logout">
@@ -10,13 +13,15 @@
 <form>
 	<input type="text" placeholder="タイトル" id="title"></input>
 	<input type="text" placeholder="作者" id="author"></input>
-	<input type="text" placeholder="ジャンル" id="genre"></input>
+	<select name="genre" id="genre">
+		<option value='' disabled selected style='display:none;'>ジャンル</option>
+	</select>
 	<input type="button" value="検索" id="search"></input>
 </form>
 <nav>
 	<!-- マイページボタンと嘆願ボタンはidを共通にする -->
-	<input type="button" placeholder="マイページ" id=""></input>
-	<input type="button" placeholder="嘆願" id=""></input>
+	<input type="button" value="マイページ" id=""></input>
+	<input type="button" value="嘆願" id=""></input>
 </nav>
 <div>
 	<table id="booksTable">
