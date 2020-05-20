@@ -39,11 +39,20 @@ public class BooksSearchServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		response.setContentType("text/html;charset=UTF-8");
+		//セッション情報の取得
+		// HttpSession session = request.getSession(true);
+		//String loginStatus = (String) session.getAttribute("login");
+		//String role = (String) session.getAttribute("loginサーブレットで決められたキー");
 		//検索情報の入力値
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String genre = request.getParameter("genre");
+		//String order = request.getParameter("order");
 
+		//ログインしているか確認
+		//if(!loginStatus.equals("loginサーブレットで決められたキー"){
+		//     ～処理～
+		//}
 		// JDBCドライバの準備
 				try {
 
@@ -67,7 +76,8 @@ public class BooksSearchServlet extends HttpServlet {
 						"	bo.TITLE, \n" +
 						"	bo.PUBLISHER, \n" +
 						"	bo.STATUS, \n" +
-						"	bo.GENRE \n" +
+						"	bo.GENRE, \n" +
+						"   bo.REND_DATA \n" +
 						"from  \n" +
 						"	MS_BOOKS bo \n" +
 						"where \n" +
@@ -81,10 +91,13 @@ public class BooksSearchServlet extends HttpServlet {
 						if(!genre.equals("null")){
 								sql += " AND bo.GENRE = '"+genre+"'";
 						}
-//						if(.equals("")){
-//							sql +=
-//						}
 //
+//						if(role.equals("MANAGER"){
+//							if(order.equals("昇順")){
+//								sql += "order by"REND_DATA asc" ;
+//							}else{
+//								sql+= "order by REND_DATA desc" ;
+//							}
 //						;
 
 				System.out.println(sql);
