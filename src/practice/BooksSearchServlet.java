@@ -14,7 +14,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
+=======
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -41,14 +44,24 @@ public class BooksSearchServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=UTF-8");
 		//セッション情報の取得
+<<<<<<< HEAD
 		 HttpSession session = request.getSession(true);
 		//String loginStatus = (String) session.getAttribute("login");
 		String role = (String) session.getAttribute("userRole");
+=======
+		// HttpSession session = request.getSession(true);
+		//String loginStatus = (String) session.getAttribute("login");
+		//String role = (String) session.getAttribute("loginサーブレットで決められたキー");
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 		//検索情報の入力値
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String genre = request.getParameter("genre");
+<<<<<<< HEAD
 		String frequency = request.getParameter("frequency");
+=======
+		//String order = request.getParameter("order");
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 
 		//ログインしているか確認
 		//if(!loginStatus.equals("loginサーブレットで決められたキー"){
@@ -92,6 +105,7 @@ public class BooksSearchServlet extends HttpServlet {
 						if(!genre.equals("null")){
 								sql += " AND bo.GENRE = '"+genre+"'";
 						}
+<<<<<<< HEAD
 
 						if(role.equals("MANAGER")){
 							if(frequency.equals("降順")){
@@ -100,6 +114,16 @@ public class BooksSearchServlet extends HttpServlet {
 								sql+= "order by REND_DATA asc" ;
 							}
 
+=======
+//
+//						if(role.equals("MANAGER"){
+//							if(order.equals("昇順")){
+//								sql += "order by"REND_DATA asc" ;
+//							}else{
+//								sql+= "order by REND_DATA desc" ;
+//							}
+//						;
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 
 				System.out.println(sql);
 

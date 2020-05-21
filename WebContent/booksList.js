@@ -1,5 +1,6 @@
 
 var userRole;
+<<<<<<< HEAD
 
 //URLからパラメータの部分を取得
 function GetQueryString() {
@@ -32,6 +33,29 @@ function GetQueryString() {
 var param = GetQueryString();
 userRole = param["role"];
 
+=======
+var loginStatus;
+
+
+//セッション情報を取得
+function getSessionInfo(){
+	$.ajax({
+		type: 'GET',
+		url : '/myFirstApp/',
+		dataType : 'json',
+		success : function(){
+			console.log(json)
+
+			if(!json.empId){
+				location.href = '' //'ログインページ'
+			}else{
+				userRole = json.role//変数名未定
+				loginStatus = json.result
+			}
+		}
+	})
+}
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 
 //初期表示
 function executeAjax(){
@@ -40,7 +64,10 @@ function executeAjax(){
 		url : '/myFirstApp/booksList',
 		dataType : 'json',
 		success : function(json){
+<<<<<<< HEAD
 			console.log(userRole);
+=======
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 			console.log(json);
 
 			for(var i=0; i<json.length; i++){
@@ -50,11 +77,18 @@ function executeAjax(){
 				'<td>'+ json[i].author+'</td>'+
 				'<td>'+ json[i].status+'</td>'+
 				'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
+<<<<<<< HEAD
 				if(userRole === "MANAGER"){
 					 row +=
 					'<td>'+'<input type="button" value="編集" id="edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
 					+'<td>'+'<input type="button" value="削除" id="delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
 				};
+=======
+//				if(userRole.quals("MANAGER")){
+//					'<td>'+'<input type="button" value="編集" id="syain_edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'+
+//					'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
+//				};
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 				+'</tr>';
 
 				$('#booksTable').append(row);
@@ -73,6 +107,7 @@ function booksSearch(){
 	var inputGenre = $('#genre').val();
 	var inputFrequency = $('#frequency').val();
 
+<<<<<<< HEAD
 	if(userRole === "MANAGER"){
 		var requestQuery = {
 				title : inputTitle,
@@ -88,6 +123,14 @@ function booksSearch(){
 			}
 	}
 
+=======
+	var requestQuery = {
+		title : inputTitle,
+		author : inputAuthor,
+		genre : inputGenre,
+		//frequency : inputFrequency,//図書管理者用のページを表示するときにfrequencyを入れる
+	}
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 	console.log(requestQuery);
 	$.ajax({
 		type: 'GET',
@@ -116,11 +159,18 @@ function booksSearch(){
 					'<td>'+ json[i].author+'</td>'+
 					'<td>'+ json[i].status+'</td>'+
 					'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>'//ロールが図書管理者のとき、編集削除ボタンをつける
+<<<<<<< HEAD
 					if(userRole === "MANAGER"){
 						row +=
 						'<td>'+'<input type="button" value="編集" id="syain_edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
 						+'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
 					};
+=======
+//					if(userRole.quals("MANAGER")){
+//						'<td>'+'<input type="button" value="編集" id="syain_edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'+
+//						'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
+//					};
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 					+'</tr>';
 
 					+'</tr>';
@@ -131,6 +181,7 @@ function booksSearch(){
 		}
 	});
 }
+<<<<<<< HEAD
 //貸出機能
 function borrowBooks(title){
 
@@ -141,6 +192,9 @@ function borrowBooks(title){
 		data : request
 	})
 }
+=======
+
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 //削除機能（画面から）
 var deletion = function(o,syainId){
 	console.log('aaa');
@@ -184,6 +238,7 @@ var reset = function(){
 	$('#booksTable').empty();
 }
 
+<<<<<<< HEAD
 //ログアウト機能
 function logout() {
 	// 入力されたユーザーIDとパスワード
@@ -216,11 +271,18 @@ function logout() {
 }
 
 $(document).ready(function(){
+=======
+$(document).ready(function(){
+
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 	executeAjax();
 	pulldownList();
 
 	$('#search').click(booksSearch);
 	$('#detail').click(moveToDetail);
+<<<<<<< HEAD
 	$('#logout').click(logout);
+=======
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 
 });

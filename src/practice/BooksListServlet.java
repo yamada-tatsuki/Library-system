@@ -116,6 +116,7 @@ public class BooksListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 //		HttpSession session = request.getSession(true);
 //		String loginStatus = (String) session.getAttribute("login");
 //		String role = (String) session.getAttribute("userRole");
@@ -124,6 +125,9 @@ public class BooksListServlet extends HttpServlet {
 //
 //		pw1.append(new ObjectMapper().writeValueAsString(loginStatus));
 //		pw2.append(new ObjectMapper().writeValueAsString(role));
+=======
+		doGet(request, response);
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
 	}
 
 }
