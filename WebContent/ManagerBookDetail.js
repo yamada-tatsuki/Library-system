@@ -1,5 +1,5 @@
 
-function GetQueryTitle() {
+function GetQueryString() {
     var result = new Object();
     if (1 < document.location.search.length) {
         // 最初の1文字 (?記号) を除いた文字列を取得する

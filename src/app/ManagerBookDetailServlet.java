@@ -48,6 +48,7 @@ public class ManagerBookDetailServlet extends HttpServlet {
 			while (rs1.next()) {
 				MemberBookDetail book = new MemberBookDetail();
 
+
 				book.setBookId(rs1.getString("BOOK_ID"));
 				book.setBoughtOn(rs1.getString("BOUGHT_ON"));
 				book.setBoughtBy(rs1.getString("BOUGHT_BY"));

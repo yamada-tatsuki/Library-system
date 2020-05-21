@@ -9,6 +9,10 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
     font-family:YuGothic,'Yu Gothic',sans-serif;
+}
+
+/* メインコンテンツ */
+.content {
 	width: 100%;
 	height:110vh;
 	background-image:url("./images/loginver.01.gif");
