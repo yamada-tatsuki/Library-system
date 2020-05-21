@@ -116,18 +116,9 @@ public class BooksListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-//		HttpSession session = request.getSession(true);
-//		String loginStatus = (String) session.getAttribute("login");
-//		String role = (String) session.getAttribute("userRole");
-//		PrintWriter pw1 = response.getWriter();
-//		PrintWriter pw2 = response.getWriter();
-//
-//		pw1.append(new ObjectMapper().writeValueAsString(loginStatus));
-//		pw2.append(new ObjectMapper().writeValueAsString(role));
-=======
+
 		doGet(request, response);
->>>>>>> a0613a873914ca8da40b91ede2673bff69023221
+
 	}
 
 }
