@@ -44,7 +44,6 @@ public class ManagerBookDetailServlet extends HttpServlet {
 				// SQLの命令文を実行し、その結果をResultSet型のrsに代入します
 				ResultSet rs1 = stmt.executeQuery(sql);){
 
-
 			while (rs1.next()) {
 				MemberBookDetail book = new MemberBookDetail();
 
