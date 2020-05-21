@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,7 +36,9 @@ public class MypageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-    	String itemEmployeesId= request.getParameter("itemEmployeesId");
+    	//String itemEmployeesId= request.getParameter("itemEmployeesId");
+    	HttpSession session = request.getSession(true);
+    	String itemEmployeesId=(String)session.getAttribute("empId");
 
 
     		try {

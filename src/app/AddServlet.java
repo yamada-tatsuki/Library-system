@@ -97,13 +97,7 @@ public class AddServlet extends HttpServlet {
 			else if (numberOfBooks!=0){
 				ResultSet rs3 = stmt.executeQuery(
 								"UPDATE MS_BOOKS  \n" +
-<<<<<<< HEAD
-
 										"SET NUMBER_BOOKS ='"+numberOfBooks+"'+1 \n" +
-
-=======
-										"SET NUMBER_BOOKS ='"+numberOfBooks+"'+1 \n" +
->>>>>>> 4062441c1a044982deff458b1f7de9abd7297b63
 										"WHERE 1=1 \n" +
 										"and TITLE='"+itemTitle+"' \n" +
 										"and AUTHOR='"+itemAuthor+"' \n");
