@@ -37,7 +37,7 @@ public class DeleteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 
-    	String itemBookId = request.getParameter("itemBookId");
+    	String bookId = request.getParameter("bookId");
 
 
 
@@ -58,7 +58,7 @@ public class DeleteServlet extends HttpServlet {
 		// 実行するSQL文
 		String sql ="delete from MS_BOOKS \n" +
 				"where  \n" +
-				"BOOK_ID='"+itemBookId+"'";
+				"BOOK_ID='"+bookId+"'";
 
 		System.out.println(sql);
 
