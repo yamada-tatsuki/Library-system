@@ -41,7 +41,11 @@ public class ChangeServlet extends HttpServlet {
     	String itemTitle = request.getParameter("itemTitle");
     	String itemGenre = request.getParameter("itemGenre");
 		String itemPublisher = request.getParameter("itemPublisher");
+<<<<<<< HEAD
 		String bookId=request.getParameter("bookId");
+=======
+		String itemBookId=request.getParameter("itemBookId");
+>>>>>>> 4062441c1a044982deff458b1f7de9abd7297b63
 
 
 
@@ -71,8 +75,12 @@ public class ChangeServlet extends HttpServlet {
 				"GENRE='"+itemGenre+"', \n" +
 				"PUBLISHER='"+itemPublisher+"' \n" +
 				"WHERE \n" +
+<<<<<<< HEAD
 				"BOOK_ID = '"+bookId+"' \n";
 		System.out.println(sql);
+=======
+				"BOOK_ID = '"+itemBookId+"' \n";
+>>>>>>> 4062441c1a044982deff458b1f7de9abd7297b63
 		boolean result=true;
 
 		// エラーが発生するかもしれない処理はtry-catchで囲みます

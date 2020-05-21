@@ -35,10 +35,16 @@ public class DeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 
 
     	String bookId = request.getParameter("bookId");
 
+=======
+    	String itemBookId = request.getParameter("itemBookId");
+
+
+>>>>>>> 4062441c1a044982deff458b1f7de9abd7297b63
 
 
 		// JDBCドライバの準備
@@ -58,10 +64,16 @@ public class DeleteServlet extends HttpServlet {
 		// 実行するSQL文
 		String sql ="delete from MS_BOOKS \n" +
 				"where  \n" +
+<<<<<<< HEAD
 				"BOOK_ID='"+bookId+"'";
 
 		System.out.println(sql);
 
+=======
+				"BOOK_ID='"+itemBookId+"'";
+
+		System.out.println(sql);
+>>>>>>> 4062441c1a044982deff458b1f7de9abd7297b63
 		boolean result=true;
 
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
