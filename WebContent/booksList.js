@@ -51,7 +51,7 @@ function executeAjax(){
 				'<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
 				'<td>'+ json[i].author+'</td>'+
 				'<td>'+ json[i].status+'</td>'+
-				'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
+				'<td>'+ '<input type="button" value="借りる" id="borrow" onclick="borrowBooks(\''+json[i].bookId+'\')">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
 				if(userRole === "MANAGER"){
 					 row +=
 					'<td>'+'<input type="button" value="編集" id="edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
@@ -71,16 +71,17 @@ function booksSearch(){
 	var inputTitle = $('#title').val();
 	var inputAuthor = $('#author').val();
 	var inputGenre = $('#genre').val();
-	var inputFrequency = $('#frequency').val();
+
 
 	if(userRole === "MANAGER"){
+		var inputFrequency = $('#frequency').val();
 		var requestQuery = {
 				title : inputTitle,
 				author : inputAuthor,
 				genre : inputGenre,
 				frequency : inputFrequency//図書管理者用のページを表示するときにfrequencyを入れる
 			};
-	}else{
+	}else if(userRole === "MEMBER"){
 		var requestQuery = {
 				title : inputTitle,
 				author : inputAuthor,
@@ -115,12 +116,12 @@ function booksSearch(){
 					'<td>'+ '<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
 					'<td>'+ json[i].author+'</td>'+
 					'<td>'+ json[i].status+'</td>'+
-					'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>'//ロールが図書管理者のとき、編集削除ボタンをつける
+					'<td>'+ '<input type="button" value="借りる" id="borrowBooks" onclick="borrowBooks(\''+json[i].bookId+'\')">'+'</td>'//ロールが図書管理者のとき、編集削除ボタンをつける
 
 					if(userRole === "MANAGER"){
 						row +=
 						'<td>'+'<input type="button" value="編集" id="edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
-						+'<td>'+'<input type="button" value="削除" id="delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
+						+'<td>'+'<input type="button" value="削除" id="delete" onclick="change(this,\''+json[i].bookId+'\')">'+'</td>'
 					};
 					+'</tr>';
 
@@ -132,18 +133,23 @@ function booksSearch(){
 }
 
 //貸出機能
-function borrowBooks(title){
+function borrowBooks(bookId){
+	var id = bookId;
+	var requestQuery = {
+		id : bookId
+	};
 
 	$.afax({
 		type : 'GET',
 		url : 'myFirstApp/BorrowBooksServlet',
 		dataType : 'json',
-		data : request
+		data : requestQuery,
+
 	});
 }
 
 //削除機能（画面から）
-var deletion = function(o,bookId){
+var change = function(o,bookId){
 	console.log('aaa');
 	//ディスプレイから表示を消す
 	var TR = o.parentNode.parentNode;
@@ -227,7 +233,7 @@ $(document).ready(function(){
 
 	$('#search').click(booksSearch);
 	$('#detail').click(moveToDetail);
-	$('#delete').click(deletion);
+
 
 	$('#logout').click(logout);
 
