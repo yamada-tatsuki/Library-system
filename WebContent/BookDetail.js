@@ -75,6 +75,6 @@ $(document).ready(function () {
 	// 初期表示用
 	executeAjax();
 
-	$('#table_data').ready('road',executeAjax);
+	//$('#table_data').ready('road',executeAjax);
 
 });
