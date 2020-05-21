@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>蔵書一覧ページ</title>
+<!-- <link rel="stylesheet" type="text/css" href="ListPage.css"> -->
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="booksList.js"></script>
+</head>
+<header>
+	<input type="button" value="ログアウト" id="logout">
+</header>
+<form>
+	<input type="text" placeholder="タイトル" id="title"></input>
+	<input type="text" placeholder="作者" id="author"></input>
+	<select name="genre" id="genre">
+		<option value='' disabled selected style='display:none;'>ジャンル</option>
+	</select>
+	<input type="button" value="検索" id="search"></input>
+</form>
+<nav>
+	<!-- マイページボタンと嘆願ボタンはidを共通にする -->
+<<<<<<< HEAD
+	<input type="button" value="マイページ" id="mypage"></input>
+	<input type="button" value="嘆願" id="request"></input>
+=======
+	<input type="button" value="マイページ" id=""></input>
+	<input type="button" value="嘆願" id=""></input>
+>>>>>>> a0613a873914ca8da40b91ede2673bff69023221
+</nav>
+<div>
+	<table id="booksTable">
+		<tr>
+			<th>書籍名</th>
+			<th>作者</th>
+			<th>貸出状況</th>
+			<th>レンタル</th>
+		</tr>
+	</table>
+</div>
+<body>
+</body>
+</html>
