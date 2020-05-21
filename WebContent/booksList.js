@@ -119,8 +119,8 @@ function booksSearch(){
 
 					if(userRole === "MANAGER"){
 						row +=
-						'<td>'+'<input type="button" value="編集" id="syain_edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
-						+'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
+						'<td>'+'<input type="button" value="編集" id="edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
+						+'<td>'+'<input type="button" value="削除" id="delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
 					};
 					+'</tr>';
 
@@ -143,7 +143,7 @@ function borrowBooks(title){
 }
 
 //削除機能（画面から）
-var deletion = function(o,syainId){
+var deletion = function(o,bookId){
 	console.log('aaa');
 	//ディスプレイから表示を消す
 	var TR = o.parentNode.parentNode;
@@ -227,6 +227,7 @@ $(document).ready(function(){
 
 	$('#search').click(booksSearch);
 	$('#detail').click(moveToDetail);
+	$('#delete').click(deletion);
 
 	$('#logout').click(logout);
 
