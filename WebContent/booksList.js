@@ -99,7 +99,7 @@ function booksSearch(){
 		success : function(json){
 			console.log(json);
 			reset();
-			if(json.length == 0){
+			if(json.length === 0){
 				var message = '<p>'+'該当する書籍がありません'+'</p>'
 				$('#booksTable').append(message);
 			}else{
@@ -132,21 +132,50 @@ function booksSearch(){
 	});
 }
 
+//日付を取得
+function getDate(day) {
+	  var date = new Date();
+	  date.setDate(date.getDate() + day);
+	  var year  = date.getFullYear();
+	  var month = date.getMonth() + 1;
+	  var day   = date.getDate();
+
+	   var today = String(year) + "-" + String(month) + "-" + String(day);
+	  return today;
+	}
+
 //貸出機能
 function borrowBooks(bookId){
+
 	var id = bookId;
 	var requestQuery = {
-		id : bookId
+		bookId : id,
+		today: getDate(0),
+		dueDate : getDate(14)
 	};
-
-	$.afax({
-		type : 'GET',
-		url : 'myFirstApp/BorrowBooksServlet',
+	console.log(requestQuery);
+	$.ajax({
+		type:'POST',
+		url : '/myFirstApp/BorrowBooksServlet',
 		dataType : 'json',
 		data : requestQuery,
+		success : function(json){
+			console.log(json);
+			if(json !== '貸出中'){
+				alert('書籍を借りました')
+			}else{
+				alert('貸出中です。')
+			}
 
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			// サーバーとの通信に失敗した時の処理
+			alert('データの通信に失敗しました');
+			console.log(errorThrown)
+		}
 	});
 }
+
 
 //削除機能（画面から）
 var change = function(o,bookId){
@@ -207,14 +236,14 @@ function logout() {
 		url : '/myFirstApp/LoginLogoutServlet',// url変えろ
 		data : requestQuery,
 		success : function(json) {
-			if (json.result === "ok") {
-				alert('ログインして');
-				// 画面遷移
-
-			} else {
+//			if (json.result === "ok") {
+//				alert('ログインして');
+//				// 画面遷移
+//
+//			} else {
 				alert('ログアウトしました。');
 				location.href = 'Login.html';
-			}
+//		    }
 
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
