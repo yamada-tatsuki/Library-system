@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -40,14 +41,14 @@ public class BooksSearchServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=UTF-8");
 		//セッション情報の取得
-		// HttpSession session = request.getSession(true);
+		 HttpSession session = request.getSession(true);
 		//String loginStatus = (String) session.getAttribute("login");
-		//String role = (String) session.getAttribute("loginサーブレットで決められたキー");
+		String role = (String) session.getAttribute("userRole");
 		//検索情報の入力値
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String genre = request.getParameter("genre");
-		//String order = request.getParameter("order");
+		String frequency = request.getParameter("frequency");
 
 		//ログインしているか確認
 		//if(!loginStatus.equals("loginサーブレットで決められたキー"){
@@ -91,14 +92,14 @@ public class BooksSearchServlet extends HttpServlet {
 						if(!genre.equals("null")){
 								sql += " AND bo.GENRE = '"+genre+"'";
 						}
-//
-//						if(role.equals("MANAGER"){
-//							if(order.equals("昇順")){
-//								sql += "order by"REND_DATA asc" ;
-//							}else{
-//								sql+= "order by REND_DATA desc" ;
-//							}
-//						;
+
+						if(role.equals("MANAGER")){
+							if(frequency.equals("降順")){
+								sql += "order by REND_DATA desc" ;
+							}else{
+								sql+= "order by REND_DATA asc" ;
+							}
+
 
 				System.out.println(sql);
 
