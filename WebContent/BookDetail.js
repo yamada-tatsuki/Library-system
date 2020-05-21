@@ -75,6 +75,10 @@ $(document).ready(function () {
 	// 初期表示用
 	executeAjax();
 
+<<<<<<< HEAD
 	//$('#table_data').ready('road',executeAjax);
+=======
+	$('#table_data').ready('road',executeAjax);
+>>>>>>> d9ee5e2c6515f703fd340ce3679fb32255c860fa
 
 });

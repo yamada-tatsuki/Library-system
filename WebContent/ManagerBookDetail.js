@@ -2,6 +2,7 @@
 function executeAjax () {
 	'use strict';
 
+<<<<<<< HEAD
 	var parameter  = location.search.substring( 1, location.search.length );
 	parameter = decodeURIComponent( parameter );
 	parameter = parameter.split('=')[1];
@@ -15,10 +16,25 @@ function executeAjax () {
 	$.ajax({
 		type : 'GET',
 		url : '/myFirstApp/api/managerbookdetail',
+=======
+	//var parameter  = location.search.substring( 1, location.search.length );
+	//parameter = decodeURIComponent( parameter );
+	//parameter = parameter.split('=')[1];
+
+	var param = GetQueryString();
+	var title = param["title"];
+
+	var requestQuery = { title : title} ;
+	console.dir(requestQuery);
+	$.ajax({
+		type : 'GET',
+		url : '/myFirstApp/api/bookdetail',
+>>>>>>> d9ee5e2c6515f703fd340ce3679fb32255c860fa
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
 
+<<<<<<< HEAD
 			//for (var i = 0; i < json.length; i++) {
 
 
@@ -27,18 +43,39 @@ function executeAjax () {
 				var boughton = str.replace( /-/g, '/' );
 
 				console.log(boughton);
+=======
+			for (var i = 0; i < json.length; i++) {
+
+
+				var elements = json[i];
+>>>>>>> d9ee5e2c6515f703fd340ce3679fb32255c860fa
 
 				$('#js-title').html(elements.title);
 				$('#js-author').html(elements.author);
 				$('#js-publisher').html(elements.publisher);
 				$('#js-genre').html(elements.genre);
 				$('#js-status').html(elements.status);
+<<<<<<< HEAD
 				$('#js-boughtby').html(elements.boughtBy);
 				$('#js-boughton').html(boughton);
 				$('#js-renddata').html(elements.rendData);
 
 			}
 		//}
+=======
+
+				//var record = '<tr>'
+				//	+ '<td>' + element.title + '</td>'
+					//+ '<td>' + element.author + '</td>'
+					//+ '<td>' + element.publisher + '</td>'
+					//+ '<td>' + element.genre + '</td>'
+					//+ '<td>' + element.status + '</td>'
+					//+ '</tr>';
+
+				//$('#table_data').append(record)
+			}
+		}
+>>>>>>> d9ee5e2c6515f703fd340ce3679fb32255c860fa
 	});
 }
 
@@ -74,6 +111,10 @@ $(document).ready(function () {
 	// 初期表示用
 	executeAjax();
 
+<<<<<<< HEAD
 	//$('#table_data').ready('road',executeAjax);
+=======
+	$('#table_data').ready('road',executeAjax);
+>>>>>>> d9ee5e2c6515f703fd340ce3679fb32255c860fa
 
 });
