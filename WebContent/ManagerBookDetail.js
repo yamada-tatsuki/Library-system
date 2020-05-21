@@ -2,44 +2,43 @@
 function executeAjax () {
 	'use strict';
 
-	//var parameter  = location.search.substring( 1, location.search.length );
-	//parameter = decodeURIComponent( parameter );
-	//parameter = parameter.split('=')[1];
+	var parameter  = location.search.substring( 1, location.search.length );
+	parameter = decodeURIComponent( parameter );
+	parameter = parameter.split('=')[1];
 
-	var param = GetQueryString();
-	var title = param["title"];
+	//var param = GetQueryString();
+	//var title = param["title"];
 
-	var requestQuery = { title : title} ;
+	//var requestQuery = { title : title} ;
+	var requestQuery = { q : parameter} ;
 	console.dir(requestQuery);
 	$.ajax({
 		type : 'GET',
-		url : '/myFirstApp/api/bookdetail',
+		url : '/myFirstApp/api/managerbookdetail',
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
 
-			for (var i = 0; i < json.length; i++) {
+			//for (var i = 0; i < json.length; i++) {
 
 
-				var elements = json[i];
+				var elements = json[1];
+				var str = elements.boughtOn;
+				var boughton = str.replace( /-/g, '/' );
+
+				console.log(boughton);
 
 				$('#js-title').html(elements.title);
 				$('#js-author').html(elements.author);
 				$('#js-publisher').html(elements.publisher);
 				$('#js-genre').html(elements.genre);
 				$('#js-status').html(elements.status);
+				$('#js-boughtby').html(elements.boughtBy);
+				$('#js-boughton').html(boughton);
+				$('#js-renddata').html(elements.rendData);
 
-				//var record = '<tr>'
-				//	+ '<td>' + element.title + '</td>'
-					//+ '<td>' + element.author + '</td>'
-					//+ '<td>' + element.publisher + '</td>'
-					//+ '<td>' + element.genre + '</td>'
-					//+ '<td>' + element.status + '</td>'
-					//+ '</tr>';
-
-				//$('#table_data').append(record)
 			}
-		}
+		//}
 	});
 }
 
@@ -75,6 +74,6 @@ $(document).ready(function () {
 	// 初期表示用
 	executeAjax();
 
-	$('#table_data').ready('road',executeAjax);
+	//$('#table_data').ready('road',executeAjax);
 
 });
