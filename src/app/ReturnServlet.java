@@ -91,13 +91,16 @@ public class ReturnServlet extends HttpServlet {
 			while(rs1.next()) {
 				numberOfBooks=rs1.getInt("NUMBER_BOOKS");
 			}
+			if(numberOfBooks>=0){
 			ResultSet rs2 = stmt.executeQuery(
 					"UPDATE MS_BOOKS \n" +
 							"SET NUMBER_BOOKS ='"+numberOfBooks+"'+1, \n" +
 							" STATUS='貸出可' \n" +
 							"WHERE 1=1 \n" +
-							"and TITLE='\"+itemTitle+\"' \n" +
-							"and AUTHOR='\"+itemAuthor+\"' \n" );
+							"and TITLE='"+itemTitle+"' \n" +
+							"and AUTHOR='"+itemAuthor+"' \n" );
+			}
+
 
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);

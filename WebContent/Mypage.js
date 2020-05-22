@@ -1,4 +1,4 @@
-function executeAjax () {
+function executeAjax2 () {
 	'use strict';
 
 
@@ -36,7 +36,7 @@ function executeAjax () {
 $(document).ready(function () {
 	'use strict';
 	// 初期表示用
-	 executeAjax();
+	 executeAjax2();
 	 $('.js-return').click((e)=>DeleteItem($(e.currentTarget).attr('id')));
 
 });
