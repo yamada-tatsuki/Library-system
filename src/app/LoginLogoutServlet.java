@@ -74,8 +74,7 @@ public class LoginLogoutServlet extends HttpServlet {
 				System.out.println(empId + password);
 				response.setContentType("text/html;charset=UTF-8");
 
-				String sql = "select EMPLOYEE_ID,PASS,ROLE from MS_EMPLOYEES where 1=1 and EMPLOYEE_ID='"+empId+"' and PASS='"+password+"'";
-				System.out.println(sql);
+
 				Map<String, String> responseData = new HashMap<>();
 
 				// JDBCドライバの準備
@@ -94,6 +93,7 @@ public class LoginLogoutServlet extends HttpServlet {
 
 				String dbUser = "wc";
 				String dbPass = "wc";
+				String sql = "select EMPLOYEE_ID,PASS,ROLE from MS_EMPLOYEES where 1=1 and EMPLOYEE_ID='"+empId+"' and PASS='"+password+"'";
 
 				// DBへ接続してSQLを実行
 				try (
@@ -117,13 +117,15 @@ public class LoginLogoutServlet extends HttpServlet {
 						HttpSession session = request.getSession(true);
 						String userRole = rs1.getString("ROLE");
 						System.out.println(userRole);
-						session.setAttribute("empId", empId);
+						session.setAttribute("empId", rs1.getString("EMPLOYEE_ID"));
 						session.setAttribute("userRole", userRole);
 
 						System.out.println("ログインしました");
 
 						responseData.put("result", "ok");
-
+						responseData.put("userRole", userRole);
+						responseData.put("empId", empId);
+						System.out.println(responseData);
 					} else {
 						System.out.println("パスワードまたはユーザー名が違います");
 						responseData.put("result", "ng");

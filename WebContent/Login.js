@@ -13,12 +13,19 @@ function login() {
 		data : requestQuery,
 		success : function(json) {
 			// サーバーとの通信に成功した時の処理
+			console.log(json);
 
-			if (json.result === "ok") {
+			var userRole = json.userRole
+
+			if (json.result === "ok"){
 				alert('成功');
-				// 画面遷移
-				//location.href = './Shainlist.html';
-			} else {
+				if(json.userRole === "MANAGER"){
+					location.href = './ManagerBooksList.html?role='+userRole;
+				}else{
+					location.href = './MemberBooksList.html?role='+userRole;
+				}
+
+			}else {
 				alert('社員IDかパスワードが間違っています');
 			}
 
@@ -49,7 +56,7 @@ function logout() {
 
 			} else {
 				alert('ログアウトしました。');
-				//location.href = '';
+				location.href = 'Login.html';
 			}
 
 		},
