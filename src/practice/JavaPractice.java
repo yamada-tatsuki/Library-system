@@ -3,6 +3,9 @@ package practice;
 public class JavaPractice {
 
 	public static void main(String[] args) {
+		TodaysDate today = new TodaysDate();
+		today.getClass();
+		System.out.println(today.toString());
 
 		//「String」は文字列を保持するための型です
 		String itemName = "リンゴ";
