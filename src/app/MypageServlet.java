@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,7 +36,9 @@ public class MypageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-    	String itemEmployeesId= request.getParameter("itemEmployeesId");
+    	//String itemEmployeesId= request.getParameter("itemEmployeesId");
+    	HttpSession session = request.getSession(true);
+    	String itemEmployeesId=(String)session.getAttribute("empId");
 
 
     		try {
@@ -65,7 +68,8 @@ public class MypageServlet extends HttpServlet {
     											"MB.AUTHOR, \n" +
     											"MB.GENRE, \n" +
     											"MB.PUBLISHER, \n" +
-    											"TR.DEADLINE \n" +
+    											"TR.DEADLINE, \n" +
+    											"MB.BOOK_ID \n" +
     											"from \n" +
     											"MS_BOOKS MB, \n" +
     											"TR_RENTALS TR, \n" +
@@ -73,7 +77,7 @@ public class MypageServlet extends HttpServlet {
     											"where 1=1 \n" +
     											"and ME.EMPLOYEE_ID=TR.EMPLOYEE_ID \n" +
     											"and TR.BOOK_ID=MB.BOOK_ID \n" +
-    											"and ME.EMPLOYEE_ID='"+itemEmployeesId+"'");){
+    											"and ME.EMPLOYEE_ID='"+itemEmployeesId+"' \n");){
 
 
     			List<Rental> RentalList=new ArrayList<Rental>();
@@ -86,6 +90,7 @@ public class MypageServlet extends HttpServlet {
     				rental.setGenre(rs1.getString("GENRE"));
     				rental.setPublisher(rs1.getString("PUBLISHER"));
     				rental.setDeadline(rs1.getString("DEADLINE"));
+    				rental.setBookId(rs1.getString("BOOK_ID"));
 
 
     				RentalList.add(rental);

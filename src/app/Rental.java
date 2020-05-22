@@ -6,6 +6,8 @@ public class Rental {
 	private String publisher;
 	private String genre;
 	private String deadline;
+	private String bookId;
+
 
 	public String getTitle() {
 		return title;
@@ -39,6 +41,13 @@ public class Rental {
 	}
 	public void setDeadline(String deadline) {
 		this.deadline=deadline;
+
+	}
+	public String getBookId() {
+		return bookId;
+	}
+	public void setBookId(String bookId) {
+		this.bookId=bookId;
 
 	}
 
