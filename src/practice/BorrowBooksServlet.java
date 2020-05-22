@@ -112,7 +112,6 @@ public class BorrowBooksServlet extends HttpServlet {
 							"	MS_BOOKS bo \n" +
 							"set \n" +
 							"	bo.NUMBER_BOOKS = bo.NUMBER_BOOKS - 1 , \n" +
-							"	bo.STATUS = '貸出中', \n" +
 							"	bo.REND_DATA = bo.REND_DATA + 1 \n" +
 							"where \n" +
 							"	bo.BOOK_ID = '"+bookId+"' \n";
@@ -143,6 +142,78 @@ public class BorrowBooksServlet extends HttpServlet {
 			 catch (Exception e) {
 				throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 			}
+
+			String sql4 ="select \n" +
+					"	bo.NUMBER_BOOKS, \n" +
+					"	bo.TITLE, \n" +
+					"	bo.STATUS \n" +
+					"from \n" +
+					"	MS_BOOKS bo \n" +
+					"where \n" +
+					"	1=1 \n" +
+					"	and bo.BOOK_ID = '"+bookId+"' \n"
+			;
+			System.out.println(sql4);
+
+			// エラーが発生するかもしれない処理はtry-catchで囲みます
+			// この場合はDBサーバへの接続に失敗する可能性があります
+			try (
+					// データベースへ接続します
+					Connection con = DriverManager.getConnection(url, user, pass);
+
+					// SQLの命令文を実行するための準備をおこないます
+					Statement stmt = con.createStatement();
+
+					// SQLの命令文を実行し、その結果をResultSetのrsに代入します
+					ResultSet rs1 = stmt.executeQuery(sql4);) {
+				// SQL実行後の処理内容
+
+				rs1.next();
+					 numberOfBooks = rs1.getInt("NUMBER_BOOKS");
+				     bookTitle = rs1.getString("TITLE");
+				     status = rs1.getString("STATUS");
+
+				}
+			 catch (Exception e) {
+				throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
+			}
+
+			String sql5 = "";
+			if(numberOfBooks == 0){
+					sql5 += "update  \n" +
+							"	MS_BOOKS bo \n" +
+							"set \n" +
+							"	bo.STATUS = '貸出中' \n" +
+							"where \n" +
+							"	bo.BOOK_ID = '"+bookId+"' \n" ;
+			}else{
+				sql5 += "select \n" +
+						"	re.TITLE \n" +
+						"from \n" +
+						"	TR_RENTALS re \n" ;
+			}
+			System.out.println(sql5);
+
+			// エラーが発生するかもしれない処理はtry-catchで囲みます
+			// この場合はDBサーバへの接続に失敗する可能性があります
+			try (
+					// データベースへ接続します
+					Connection con = DriverManager.getConnection(url, user, pass);
+
+					// SQLの命令文を実行するための準備をおこないます
+					Statement stmt = con.createStatement();
+
+					// SQLの命令文を実行し、その結果をResultSetのrsに代入します
+					) {
+				// SQL実行後の処理内容
+				int resultCount = stmt.executeUpdate(sql5);
+				System.out.println(resultCount);
+
+				}
+			 catch (Exception e) {
+				throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
+			}
+
 			String sql3 = "";
 			if(numberOfBooks != 0){
 				sql3 += "insert into TR_RENTALS \n" +
@@ -154,7 +225,7 @@ public class BorrowBooksServlet extends HttpServlet {
 						"from \n" +
 						"	TR_RENTALS re \n" ;
 			}
-
+			System.out.println(sql3);
 		try (
 				// データベースへ接続します
 				Connection con = DriverManager.getConnection(url, user, pass);

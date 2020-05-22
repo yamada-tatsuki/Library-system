@@ -26,6 +26,7 @@ function GetQueryString() {
         }
         //result = {id: "EMP0001", name: "tanaka",age:"10"}
     }
+    console.log(result);
     return result;
 }
 
@@ -100,6 +101,7 @@ function booksSearch(){
 			console.log(json);
 			reset();
 			if(json.length === 0){
+
 				var message = '<p>'+'該当する書籍がありません'+'</p>'
 				$('#booksTable').append(message);
 			}else{
@@ -128,6 +130,7 @@ function booksSearch(){
 					$('#booksTable').append(row);
 				}
 			}
+
 		}
 	});
 }
@@ -163,9 +166,11 @@ function borrowBooks(bookId){
 			console.log(json);
 			if(json !== '貸出中'){
 				alert('書籍を借りました')
+				document.location.reload()
 			}else{
 				alert('貸出中です。')
 			}
+
 
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -189,7 +194,7 @@ function pulldownList(){
 	console.log('pulldownList');
 	$.ajax({
 		type :'GET',
-		url : '/myFirstApp/booksList',
+		url : '/myFirstApp/BookGenre',
 		dataType : 'json',
 		success :function(json){
 			console.log(json);
