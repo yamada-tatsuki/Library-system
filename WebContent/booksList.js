@@ -48,9 +48,13 @@ function executeAjax(){
 
 			for(var i=0; i<json.length; i++){
 
-				var row = '<tr>'+
-				'<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
-				'<td>'+ json[i].author+'</td>'+
+				var row = '<tr>'
+				if(userRole === "MANAGER"){
+					row +='<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="./ManagerBookDetail.html?title='+json[i].title+'\">'+json[i].title+'</a>'+'</td>'
+					}else{
+					row +='<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="./MemberBookDetail.html?title='+json[i].title+'\">'+json[i].title+'</a>'+'</td>'
+					};
+					row +='<td>'+ json[i].author+'</td>'+
 				'<td>'+ json[i].status+'</td>'+
 
 				'<td>'+ '<input type="button" value="借りる" id="borrow" onclick="borrowBooks(\''+json[i].bookId+'\')">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
@@ -117,12 +121,15 @@ function booksSearch(){
 				$('#booksTable').append(columName);
 
 				for(var i=0; i<json.length; i++){
-					var row = '<tr>'+
-					'<td>'+ '<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
-					'<td>'+ json[i].author+'</td>'+
-					'<td>'+ json[i].status+'</td>'+
-
-					'<td>'+ '<input type="button" value="借りる" id="borrowBooks" onclick="borrowBooks(\''+json[i].bookId+'\')">'+'</td>'//ロールが図書管理者のとき、編集削除ボタンをつける
+					var row = '<tr>'
+						if(userRole === "MANAGER"){
+							row +='<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="./ManagerBookDetail.html?title='+json[i].title+'\">'+json[i].title+'</a>'+'</td>'
+							}else{
+							row +='<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="./MemberBookDetail.html?title='+json[i].title+'\">'+json[i].title+'</a>'+'</td>'
+							};
+							row +='<td>'+ json[i].author+'</td>'+
+						'<td>'+ json[i].status+'</td>'+
+						'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
 
 					if(userRole === "MANAGER"){
 						row +=

@@ -112,8 +112,6 @@ function GetParameter(){
 }
 
 
-
-
 /**
  * 読み込み時の動作
  */

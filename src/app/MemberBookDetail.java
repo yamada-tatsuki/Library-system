@@ -1,7 +1,7 @@
 package app;
 
-public class BookDetail {
-	public BookDetail() {
+public class MemberBookDetail {
+	public MemberBookDetail() {
 		super();
 	}
 

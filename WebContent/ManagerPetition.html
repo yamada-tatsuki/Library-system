@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>嘆願ページ</title>
+<!-- <link rel="stylesheet" type="text/css" href="ListPage.css"> -->
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="Petition.js"></script>
+</head>
+<header>
+	<input type="button" value="ログアウト" id="logout">
+</header>
+<body>
+<nav>
+	<!-- マイページボタンと嘆願ボタンはidを共通にする -->
+		<input type="button" value="蔵書一覧" id="bookslist"></input>
+		<input type="button" value="マイページ" id="mypage"></input>
+		<input type="button" value="嘆願承認リスト" id="approval"></input>
+		<input type="button" value="蔵書登録" id="add"></input>
+</nav>
+<div>
+	<table id="PetitionTable">
+		<tr>
+			<th>書籍タイトル</th>
+			<th>作者</th>
+			<th>申請状況</th>
+		</tr>
+	</table>
+</div>
+<form>
+	<input type="text" placeholder="タイトル" id="js-title"></input>
+	<input type="text" placeholder="作者" id="js-author"></input>
+	<input type="button" value="嘆願" id="petition"  onclick="func1()"></input>
+
+</form>
+</body>
+</html>
