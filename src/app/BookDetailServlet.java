@@ -27,12 +27,8 @@ public class BookDetailServlet extends HttpServlet {
 		System.out.println("title="+title);
 
 		String sql = " select " + " BOOK_ID , " + " BOUGHT_ON , " + " BOUGHT_BY , " + " AUTHOR , "  + " TITLE , " + " PUBLISHER , " + " GENRE , " +
-<<<<<<< HEAD
 		" NUMBER_BOOKS , " + " STATUS , " + " REND_DATA " + " from " + " MS_BOOKS " +  " where 1=1 " + " and TITLE = '" + title + "' ";
-=======
-		" NUMBER_BOOKS , " + " STATUS , " + " REND_DATA " + " from " + " MS_BOOKS " +  " where 1=1 " + " and TITLE = ' 社会人のためのビジネスマナー講座 ' ";
-				//+ "'" + title + "' ";
->>>>>>> d9ee5e2c6515f703fd340ce3679fb32255c860fa
+
 
 		List<BookDetail> list = new ArrayList<>();
 
