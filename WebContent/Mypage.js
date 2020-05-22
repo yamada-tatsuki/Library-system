@@ -22,7 +22,11 @@ function executeAjax () {
 								+'<td>'+rental.genre+'</td>'
 								+'<td>'+rental.publisher+'</td>'
 								+'<td>'+ymd+'</td>'
+<<<<<<< HEAD
 								+'<td>'+'<button class="js-return" id="DeleteItem" onclick="DeleteItem(\''+json[i].bookId+'\')">返却</button>'+'</td>'
+=======
+								+'<td>'+'<button class="js-return" id='+rental.title+'>返却</button>'+'</td>'
+>>>>>>> 66b89afa87054db97d7a22b86c5807db0049a628
 								+'</tr>'
 
 				$('#syainData').append(tableElement);
@@ -37,12 +41,19 @@ $(document).ready(function () {
 	'use strict';
 	// 初期表示用
 	 executeAjax();
+	 $('.js-return').click((e)=>DeleteItem($(e.currentTarget).attr('id')));
 
+<<<<<<< HEAD
 
 });
 function DeleteItem (bookId){
 	var id = bookId;
 	var requestQuery={bookId : id};
+=======
+});
+function DeleteItem (itemTitle){
+	var requestQuery={itemTitle:itemTitle};
+>>>>>>> 66b89afa87054db97d7a22b86c5807db0049a628
 
 
 	// サーバーにデータを送信する。
