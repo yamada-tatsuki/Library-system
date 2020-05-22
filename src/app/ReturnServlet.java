@@ -93,7 +93,7 @@ public class ReturnServlet extends HttpServlet {
 			}
 			ResultSet rs2 = stmt.executeQuery(
 					"UPDATE MS_BOOKS \n" +
-							"SET NUMBER_BOOKS ='\"+numberOfBooks+\"'+1, \n" +
+							"SET NUMBER_BOOKS ='"+numberOfBooks+"'+1, \n" +
 							" STATUS='貸出可' \n" +
 							"WHERE 1=1 \n" +
 							"and TITLE='\"+itemTitle+\"' \n" +
