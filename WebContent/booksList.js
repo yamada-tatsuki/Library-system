@@ -26,6 +26,7 @@ function GetQueryString() {
         }
         //result = {id: "EMP0001", name: "tanaka",age:"10"}
     }
+    console.log(result);
     return result;
 }
 
@@ -33,27 +34,6 @@ function GetQueryString() {
 var param = GetQueryString();
 userRole = param["role"];
 
-var loginStatus;
-
-
-//セッション情報を取得
-function getSessionInfo(){
-	$.ajax({
-		type: 'GET',
-		url : '/myFirstApp/',
-		dataType : 'json',
-		success : function(){
-			console.log(json)
-
-			if(!json.empId){
-				location.href = '' //'ログインページ'
-			}else{
-				userRole = json.role//変数名未定
-				loginStatus = json.result
-			}
-		}
-	})
-}
 
 //初期表示
 function executeAjax(){
@@ -72,21 +52,22 @@ function executeAjax(){
 				'<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
 				'<td>'+ json[i].author+'</td>'+
 				'<td>'+ json[i].status+'</td>'+
-				'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
+
+				'<td>'+ '<input type="button" value="借りる" id="borrow" onclick="borrowBooks(\''+json[i].bookId+'\')">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
 
 				if(userRole === "MANAGER"){
 					 row +=
 					'<td>'+'<input type="button" value="編集" id="edit"  onclick="location.href=\'./Add.html?bookId='+json[i].bookId+'\'"  onclick="change(\''+json[i].bookId+'\')">'+'</td>'
 					+'<td>'+'<input type="button" value="削除" id="delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
-				};	+'</tr>';
+				};
+				+'</tr>';
 
 				$('#booksTable').append(row);
 			}
-
 		}
 	});
 }
-// json[i].title　←書籍名にハイパーリンクつける方法がうまく行かなったとき用に避難
+
 
 //書籍の検索
 function booksSearch(){
@@ -94,25 +75,23 @@ function booksSearch(){
 	var inputTitle = $('#title').val();
 	var inputAuthor = $('#author').val();
 	var inputGenre = $('#genre').val();
-	var inputFrequency = $('#frequency').val();
 
 
 	if(userRole === "MANAGER"){
+		var inputFrequency = $('#frequency').val();
 		var requestQuery = {
 				title : inputTitle,
 				author : inputAuthor,
 				genre : inputGenre,
 				frequency : inputFrequency//図書管理者用のページを表示するときにfrequencyを入れる
 			};
-	}else{
+	}else if(userRole === "MEMBER"){
 		var requestQuery = {
 				title : inputTitle,
 				author : inputAuthor,
 				genre : inputGenre,
-			}
+			};
 	}
-
-
 
 	console.log(requestQuery);
 	$.ajax({
@@ -124,7 +103,8 @@ function booksSearch(){
 		success : function(json){
 			console.log(json);
 			reset();
-			if(json.length == 0){
+			if(json.length === 0){
+
 				var message = '<p>'+'該当する書籍がありません'+'</p>'
 				$('#booksTable').append(message);
 			}else{
@@ -141,7 +121,8 @@ function booksSearch(){
 					'<td>'+ '<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
 					'<td>'+ json[i].author+'</td>'+
 					'<td>'+ json[i].status+'</td>'+
-					'<td>'+ '<input type="button" value="借りる" id="borrow">'+'</td>'//ロールが図書管理者のとき、編集削除ボタンをつける
+
+					'<td>'+ '<input type="button" value="借りる" id="borrowBooks" onclick="borrowBooks(\''+json[i].bookId+'\')">'+'</td>'//ロールが図書管理者のとき、編集削除ボタンをつける
 
 					if(userRole === "MANAGER"){
 						row +=
@@ -149,28 +130,68 @@ function booksSearch(){
 						+'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
 					};+'</tr>';
 
+
 					+'</tr>';
 
 					$('#booksTable').append(row);
 				}
 			}
+
 		}
 	});
 }
 
-//貸出機能
-function borrowBooks(title){
 
-	$.afax({
-		type : 'GET',
-		url : 'myFirstApp/BorrowBooksServlet',
+//日付を取得
+function getDate(day) {
+	  var date = new Date();
+	  date.setDate(date.getDate() + day);
+	  var year  = date.getFullYear();
+	  var month = date.getMonth() + 1;
+	  var day   = date.getDate();
+
+	   var today = String(year) + "-" + String(month) + "-" + String(day);
+	  return today;
+	}
+
+//貸出機能
+function borrowBooks(bookId){
+
+	var id = bookId;
+	var requestQuery = {
+		bookId : id,
+		today: getDate(0),
+		dueDate : getDate(14)
+	};
+	console.log(requestQuery);
+	$.ajax({
+		type:'POST',
+		url : '/myFirstApp/BorrowBooksServlet',
 		dataType : 'json',
-		data : request
-	})
+		data : requestQuery,
+		success : function(json){
+			console.log(json);
+			if(json !== '貸出中'){
+				alert('書籍を借りました')
+				document.location.reload()
+			}else{
+				alert('貸出中です。')
+			}
+
+
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			// サーバーとの通信に失敗した時の処理
+			alert('データの通信に失敗しました');
+			console.log(errorThrown)
+		}
+	});
 }
 
+
+
 //削除機能（画面から）
-var deletion = function(o,bookId){
+var change = function(o,bookId){
 	console.log('aaa');
 	//ディスプレイから表示を消す
 	var TR = o.parentNode.parentNode;
@@ -208,11 +229,12 @@ function pulldownList(){
 	console.log('pulldownList');
 	$.ajax({
 		type :'GET',
-		url : '/myFirstApp/booksList',
+		url : '/myFirstApp/BookGenre',
 		dataType : 'json',
 		success :function(json){
 			console.log(json);
-			var blank= '<option>' + '</option>';
+
+			var blank =  '<option>'+'</option>';
 			$('#genre').append(blank);
 			for(var i=0; i<json.length; i++){
 				var genre = '<option>' + json[i].genre + '</option>';
@@ -255,14 +277,14 @@ function logout() {
 		url : '/myFirstApp/LoginLogoutServlet',// url変えろ
 		data : requestQuery,
 		success : function(json) {
-			if (json.result === "ok") {
-				alert('ログインして');
-				// 画面遷移
-
-			} else {
+//			if (json.result === "ok") {
+//				alert('ログインして');
+//				// 画面遷移
+//
+//			} else {
 				alert('ログアウトしました。');
 				location.href = 'Login.html';
-			}
+//		    }
 
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -272,6 +294,10 @@ function logout() {
 		}
 	});
 }
+
+
+
+
 
 $(document).ready(function(){
 
@@ -284,6 +310,7 @@ $(document).ready(function(){
 	$('#logout').click(logout);
 
 
-
-
 });
+
+
+
