@@ -36,8 +36,9 @@ public class ReturnServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String itemTitle = request.getParameter("itemTitle");
-		String itemAuthor = request.getParameter("itemAuthor");
+		//String itemTitle = request.getParameter("itemTitle");
+		//String itemAuthor = request.getParameter("itemAuthor");
+		String bookId = request.getParameter("bookId");
 
 
 
@@ -58,9 +59,6 @@ public class ReturnServlet extends HttpServlet {
 		String pass = "wc";
 
 		// 実行するSQL文
-		String sql ="delete from TR_RENTALS \n" +
-				"where \n" +
-				"TITLE='"+itemTitle+"'" ;
 
 
 		boolean result=true;
@@ -74,7 +72,12 @@ public class ReturnServlet extends HttpServlet {
 				Statement stmt = con.createStatement();
 			) {
 			// SQLの命令文を実行し、その件数をint型のresultCountに代入します
+			String sql ="delete from TR_RENTALS \n" +
+					"where \n" +
+					"BOOK_ID='"+bookId+"'" ;
 			int resultCount = stmt.executeUpdate(sql);
+
+
 			if(resultCount!=1){
 				result=false;
 			}
@@ -84,20 +87,21 @@ public class ReturnServlet extends HttpServlet {
 							"from \n" +
 							"MS_BOOKS \n" +
 							"where 1=1 \n" +
-							"and TITLE='"+itemTitle+"' \n" +
-							"and AUTHOR='"+itemAuthor+"' \n");
+							"and BOOK_ID='"+bookId+"' \n");
+
 			int numberOfBooks=0;
 
 			while(rs1.next()) {
 				numberOfBooks=rs1.getInt("NUMBER_BOOKS");
 			}
-			ResultSet rs2 = stmt.executeQuery(
+
+			int resultCount2= stmt.executeUpdate(
 					"UPDATE MS_BOOKS \n" +
 							"SET NUMBER_BOOKS ='"+numberOfBooks+"'+1, \n" +
 							" STATUS='貸出可' \n" +
 							"WHERE 1=1 \n" +
-							"and TITLE='\"+itemTitle+\"' \n" +
-							"and AUTHOR='\"+itemAuthor+\"' \n" );
+							"and BOOK_ID='"+bookId+"' \n" );
+			System.out.println(resultCount2);
 
 		} catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
