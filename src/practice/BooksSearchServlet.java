@@ -45,12 +45,13 @@ public class BooksSearchServlet extends HttpServlet {
 		 HttpSession session = request.getSession(true);
 		//String loginStatus = (String) session.getAttribute("login");
 		String role = (String) session.getAttribute("userRole");
+
 		System.out.println(role);
+
 		//検索情報の入力値
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String genre = request.getParameter("genre");
-
 
 		// JDBCドライバの準備
 				try {
@@ -87,6 +88,7 @@ public class BooksSearchServlet extends HttpServlet {
 						if(!author.equals("")){
 								sql += "AND bo.AUTHOR like '%"+author+"%'";
 						}
+
 						if(!genre.equals("") && !genre.equals(null)){
 								sql += " AND bo.GENRE = '"+genre+"'";
 						}
@@ -99,9 +101,9 @@ public class BooksSearchServlet extends HttpServlet {
 								sql+= "order by REND_DATA asc" ;
 							}
 						}else if(role.equals("MEMBER")){
+
 							sql += "order by BOOK_ID" ;
 						}
-
 
 
 				System.out.println(sql);
