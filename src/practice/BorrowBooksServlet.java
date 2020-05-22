@@ -106,6 +106,36 @@ public class BorrowBooksServlet extends HttpServlet {
 		 catch (Exception e) {
 			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 		}
+
+		String sql3 = "";
+		if(numberOfBooks != 0){
+			sql3 += "insert into TR_RENTALS \n" +
+					"(EMPLOYEE_ID, BOOK_ID, REND_ON, DEADLINE, TITLE) \n" +
+					"values('"+employeeId+"', '"+bookId+"', '"+today+"', '"+dueDate+"', '"+bookTitle+"')";
+		}else{
+			sql3 += "select \n" +
+					"	re.TITLE \n" +
+					"from \n" +
+					"	TR_RENTALS re \n" ;
+		}
+		System.out.println(sql3);
+		try (
+				// データベースへ接続します
+				Connection con = DriverManager.getConnection(url, user, pass);
+
+				// SQLの命令文を実行するための準備をおこないます
+				Statement stmt = con.createStatement();
+
+				// SQLの命令文を実行し、その結果をResultSetのrsに代入します
+				) {
+			// SQL実行後の処理内容
+			int resultCount = stmt.executeUpdate(sql3);
+			System.out.println(resultCount);
+			}
+		 catch (Exception e) {
+			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
+		}
+
 			String sql2 = "";
 			if(numberOfBooks != 0){
 					sql2 += "update \n" +
@@ -142,6 +172,7 @@ public class BorrowBooksServlet extends HttpServlet {
 			 catch (Exception e) {
 				throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 			}
+
 
 			String sql4 ="select \n" +
 					"	bo.NUMBER_BOOKS, \n" +
@@ -214,34 +245,6 @@ public class BorrowBooksServlet extends HttpServlet {
 				throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
 			}
 
-			String sql3 = "";
-			if(numberOfBooks != 0){
-				sql3 += "insert into TR_RENTALS \n" +
-						"(EMPLOYEE_ID, BOOK_ID, REND_ON, DEADLINE, TITLE) \n" +
-						"values('"+employeeId+"', '"+bookId+"', '"+today+"', '"+dueDate+"', '"+bookTitle+"')";
-			}else{
-				sql3 += "select \n" +
-						"	re.TITLE \n" +
-						"from \n" +
-						"	TR_RENTALS re \n" ;
-			}
-			System.out.println(sql3);
-		try (
-				// データベースへ接続します
-				Connection con = DriverManager.getConnection(url, user, pass);
-
-				// SQLの命令文を実行するための準備をおこないます
-				Statement stmt = con.createStatement();
-
-				// SQLの命令文を実行し、その結果をResultSetのrsに代入します
-				) {
-			// SQL実行後の処理内容
-			int resultCount = stmt.executeUpdate(sql3);
-			System.out.println(resultCount);
-			}
-		 catch (Exception e) {
-			throw new RuntimeException(String.format("検索処理の実施中にエラーが発生しました。詳細：[%s]", e.getMessage()), e);
-		}
 
 		// アクセスした人に応答するためのJSONを用意する
 
