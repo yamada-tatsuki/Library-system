@@ -95,7 +95,6 @@ function getParam(name, url) {
 }
 
 function GetParameter(){
-
 	var parameter  = location.search.substring( 1, location.search.length );
 	parameter = decodeURIComponent( parameter );
 	parameter = parameter.split('=')[1];
@@ -110,7 +109,6 @@ function GetParameter(){
 		console.log('ある')
 	}
 }
-
 
 /**
  * 読み込み時の動作
