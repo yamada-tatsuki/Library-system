@@ -36,6 +36,7 @@ body {
 	-webkit-transform: translateY(-50%) translateX(-50%);
 	transform: translateY(-50%) translateX(-50%);
 }
+
 .login-pass{
 	width:300px;
 	height:40px;
@@ -49,6 +50,7 @@ body {
 	-webkit-transform: translateY(-50%) translateX(-50%);
 	transform: translateY(-50%) translateX(-50%);
 }
+
 .login-button{
 	width:300px;
 	height:38px;

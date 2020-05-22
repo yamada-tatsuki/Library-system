@@ -39,9 +39,7 @@ function executeAjax () {
 		data :requestQuery,
 		success : function (json) {
 
-
 			console.log(titlename);
-
 			for (var i = 0; i < json.length; i++) {
 
 
