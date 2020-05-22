@@ -1,5 +1,15 @@
 @CHARSET "UTF-8";
 /* ヘッダー */
+<<<<<<< HEAD
+=======
+.header {
+	background-color: #81d4cb;
+	color: white;
+	text-align: center;
+	width: 100%;
+	height: 10vh;
+}
+>>>>>>> 8546ff84b694b77a1d23fd5c628249b93e682f0c
 
 body {
     display: block;
@@ -9,6 +19,13 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
     font-family:YuGothic,'Yu Gothic',sans-serif;
+<<<<<<< HEAD
+=======
+}
+
+/* メインコンテンツ */
+.content {
+>>>>>>> 8546ff84b694b77a1d23fd5c628249b93e682f0c
 	width: 100%;
 	height:110vh;
 	background-image:url("./images/loginver.01.gif");
@@ -16,10 +33,30 @@ body {
 	background-repeat: no-repeat;
 }
 
+<<<<<<< HEAD
 
 /** インプットフォーム **/
 .login-id{
 	width:300px;
+=======
+logo {
+	width: 50%;
+	height:auto;
+	image:url("./images/loginlogo.png");
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+}
+
+/* 画像のサイズを指定 */
+.top-image{
+	width:100%;
+	height:auto;
+}
+
+/** インプットフォーム **/
+.login-id{
+	width:350px;
+>>>>>>> 8546ff84b694b77a1d23fd5c628249b93e682f0c
 	height:40px;
 	font-size:17px;
 	font-family:MS Pgothic;
@@ -32,7 +69,11 @@ body {
 	transform: translateY(-50%) translateX(-50%);
 }
 .login-pass{
+<<<<<<< HEAD
 	width:300px;
+=======
+	width:350px;
+>>>>>>> 8546ff84b694b77a1d23fd5c628249b93e682f0c
 	height:40px;
 	font-size:17px;
 	font-family:MS Pgothic;
@@ -45,13 +86,19 @@ body {
 	transform: translateY(-50%) translateX(-50%);
 }
 .login-button{
+<<<<<<< HEAD
 	width:300px;
 	height:38px;
+=======
+	width:100px;
+	height:40px;
+>>>>>>> 8546ff84b694b77a1d23fd5c628249b93e682f0c
 	font-size:17px;
 	font-family:MS Pgothic;
 	background-color:#666666;
 	color:white;
 	position: absolute;
+<<<<<<< HEAD
 	top: 62%;
 	left: 50%;
 	border-radius: 3px;
@@ -243,3 +290,16 @@ body {
 	transition: 0.3s;
 	color: #0080ff;
 }
+=======
+	top: 70%;
+	left: 50%;
+	border-radius: 3px;
+	border: 1px solid #888888;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	border:solid 1px #777777;
+	text-shadow: none;
+}
+
+
+>>>>>>> 8546ff84b694b77a1d23fd5c628249b93e682f0c

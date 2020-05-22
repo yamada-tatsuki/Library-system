@@ -17,33 +17,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/managerbookdetail")
-public class ManagerBookDetailServlet extends HttpServlet {
+@WebServlet("/api/bookdetail")
+public class BookDetailServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
-<<<<<<< HEAD
 		String title = request.getParameter("title");
 		System.out.println("title="+title);
 
-
 		String sql = " select " + " BOOK_ID , " + " BOUGHT_ON , " + " BOUGHT_BY , " + " AUTHOR , "  + " TITLE , " + " PUBLISHER , " + " GENRE , " +
+<<<<<<< HEAD
 		" NUMBER_BOOKS , " + " STATUS , " + " REND_DATA " + " from " + " MS_BOOKS " +  " where 1=1 " + " and TITLE = '" + title + "' ";
-
-		List<MemberBookDetail> list = new ArrayList<>();
 =======
-		//String title = request.getParameter("title");
-		//System.out.println("title="+title);
-
-		String q = request.getParameter("q");
-
-		String sql = " select " + " BOOK_ID , " + " BOUGHT_ON , " + " BOUGHT_BY , " + " AUTHOR , "  + " TITLE , " + " PUBLISHER , " + " GENRE , " +
-		" NUMBER_BOOKS , " + " STATUS , " + " REND_DATA " + " from " + " MS_BOOKS ";
-				//+  " where 1=1 " + " and TITLE = '" + title + "' ";
+		" NUMBER_BOOKS , " + " STATUS , " + " REND_DATA " + " from " + " MS_BOOKS " +  " where 1=1 " + " and TITLE = ' 社会人のためのビジネスマナー講座 ' ";
+				//+ "'" + title + "' ";
+>>>>>>> d9ee5e2c6515f703fd340ce3679fb32255c860fa
 
 		List<BookDetail> list = new ArrayList<>();
->>>>>>> 8546ff84b694b77a1d23fd5c628249b93e682f0c
 
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
 		// この場合はDBサーバへの接続に失敗する可能性があります
@@ -59,11 +50,7 @@ public class ManagerBookDetailServlet extends HttpServlet {
 
 
 			while (rs1.next()) {
-<<<<<<< HEAD
-				MemberBookDetail book = new MemberBookDetail();
-=======
 				BookDetail book = new BookDetail();
->>>>>>> 8546ff84b694b77a1d23fd5c628249b93e682f0c
 
 				book.setBookId(rs1.getString("BOOK_ID"));
 				book.setBoughtOn(rs1.getString("BOUGHT_ON"));
