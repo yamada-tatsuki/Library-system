@@ -35,7 +35,6 @@ var param = GetQueryString();
 userRole = param["role"];
 
 
-
 //初期表示
 function executeAjax(){
 	$.ajax({
@@ -43,6 +42,7 @@ function executeAjax(){
 		url : '/myFirstApp/booksList',
 		dataType : 'json',
 		success : function(json){
+
 			console.log(userRole);
 			console.log(json);
 
@@ -52,13 +52,16 @@ function executeAjax(){
 				'<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
 				'<td>'+ json[i].author+'</td>'+
 				'<td>'+ json[i].status+'</td>'+
+
 				'<td>'+ '<input type="button" value="借りる" id="borrow" onclick="borrowBooks(\''+json[i].bookId+'\')">'+'</td>' //ロールが図書管理者のとき、編集削除ボタンをつける
+
 				if(userRole === "MANAGER"){
 					 row +=
-					'<td>'+'<input type="button" value="編集" id="edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
+					'<td>'+'<input type="button" value="編集" id="edit"  onclick="location.href=\'./Add.html?bookId='+json[i].bookId+'\'"  onclick="change(\''+json[i].bookId+'\')">'+'</td>'
 					+'<td>'+'<input type="button" value="削除" id="delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
 				};
 				+'</tr>';
+
 				$('#booksTable').append(row);
 			}
 		}
@@ -118,13 +121,16 @@ function booksSearch(){
 					'<td>'+ '<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="">'+json[i].title+'</a>'+'</td>'+
 					'<td>'+ json[i].author+'</td>'+
 					'<td>'+ json[i].status+'</td>'+
+
 					'<td>'+ '<input type="button" value="借りる" id="borrowBooks" onclick="borrowBooks(\''+json[i].bookId+'\')">'+'</td>'//ロールが図書管理者のとき、編集削除ボタンをつける
 
 					if(userRole === "MANAGER"){
 						row +=
-						'<td>'+'<input type="button" value="編集" id="edit" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
-						+'<td>'+'<input type="button" value="削除" id="delete" onclick="change(this,\''+json[i].bookId+'\')">'+'</td>'
-					};
+						'<td>'+'<input type="button" value="編集" id="syain_edit"  onclick="location.href=\'./Add.html?bookId='+json[i].bookId+'\'"" onclick="edit(\''+json[i].bookId+'\')">'+'</td>'
+						+'<td>'+'<input type="button" value="削除" id="syain_delete" onclick="deletion(this,\''+json[i].bookId+'\')">'+'</td>'
+					};+'</tr>';
+
+
 					+'</tr>';
 
 					$('#booksTable').append(row);
@@ -134,6 +140,7 @@ function booksSearch(){
 		}
 	});
 }
+
 
 //日付を取得
 function getDate(day) {
@@ -182,12 +189,40 @@ function borrowBooks(bookId){
 }
 
 
+
 //削除機能（画面から）
 var change = function(o,bookId){
 	console.log('aaa');
 	//ディスプレイから表示を消す
 	var TR = o.parentNode.parentNode;
+	var book=bookId;
+	var requestQuery={bookId:bookId};
+	$.ajax({
+		type : 'GET',
+		dataType:'json',
+		url : '/myFirstApp/DeleteServlet',
+		data : requestQuery,
+		success : function(result) {
+			// サーバーとの通信に成功した時の処理
+			// 確認のために返却値を出力
+			console.log('返却値', result);
+			// 登録完了のアラート
+			if(result==true){
+			alert('削除が完了しました');
+			location.reload();
+			}
+			else if(result==false){
+				alert('NG');
+			}
+		},
+		error:function(XMLHttpRequest, textStatus, errorThrown){
+			// サーバーとの通信に失敗した時の処理
+			alert('データの通信に失敗しました');
+			console.log(errorThrown)
+		}
+	});
 }
+
 
 //プルダウンリストにジャンルを表示
 function pulldownList(){
@@ -198,6 +233,7 @@ function pulldownList(){
 		dataType : 'json',
 		success :function(json){
 			console.log(json);
+
 			var blank =  '<option>'+'</option>';
 			$('#genre').append(blank);
 			for(var i=0; i<json.length; i++){
@@ -261,15 +297,18 @@ function logout() {
 
 
 
+
+
 $(document).ready(function(){
+
 	executeAjax();
 	pulldownList();
 
 	$('#search').click(booksSearch);
 	$('#detail').click(moveToDetail);
 
-
 	$('#logout').click(logout);
+
 
 });
 
