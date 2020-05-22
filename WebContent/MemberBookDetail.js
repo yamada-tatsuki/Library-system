@@ -1,4 +1,3 @@
-
 function GetQueryTitle() {
     var result = new Object();
     if (1 < document.location.search.length) {
@@ -34,31 +33,21 @@ function executeAjax () {
 	console.dir(requestQuery);
 	$.ajax({
 		type : 'GET',
-		url : '/myFirstApp/api/managerbookdetail',
+		url : '/myFirstApp/api/memberbookdetail',
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
-
-			console.log(titlename);
 
 			for (var i = 0; i < json.length; i++) {
 
 
 				var elements = json[i];
-				var s = elements.boughtOn;
-				var str = s.replace( /-/g, '/' );
-				var ymd =  str.substr(0, 10);
-
-				console.log(ymd);
 
 				$('#js-title').html(elements.title);
 				$('#js-author').html(elements.author);
 				$('#js-publisher').html(elements.publisher);
 				$('#js-genre').html(elements.genre);
 				$('#js-status').html(elements.status);
-				$('#js-boughtby').html(elements.boughtBy);
-				$('#js-boughton').html(ymd);
-				$('#js-renddata').html(elements.rendData);
 
 			}
 		}
@@ -102,7 +91,5 @@ $(document).ready(function () {
 	// 初期表示用
 	executeAjax();
 	$('#logout').click(logout);
-
-	//$('#table_data').ready('road',executeAjax);
 
 });

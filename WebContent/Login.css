@@ -1,12 +1,5 @@
 @CHARSET "UTF-8";
 /* ヘッダー */
-.header {
-	background-color: #81d4cb;
-	color: white;
-	text-align: center;
-	width: 100%;
-	height: 10vh;
-}
 
 body {
     display: block;
@@ -16,10 +9,6 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
     font-family:YuGothic,'Yu Gothic',sans-serif;
-}
-
-/* メインコンテンツ */
-.content {
 	width: 100%;
 	height:110vh;
 	background-image:url("./images/loginver.01.gif");
@@ -27,23 +16,10 @@ body {
 	background-repeat: no-repeat;
 }
 
-logo {
-	width: 50%;
-	height:auto;
-	image:url("./images/loginlogo.png");
-	-webkit-transform: translateY(-50%) translateX(-50%);
-	transform: translateY(-50%) translateX(-50%);
-}
-
-/* 画像のサイズを指定 */
-.top-image{
-	width:100%;
-	height:auto;
-}
 
 /** インプットフォーム **/
 .login-id{
-	width:350px;
+	width:300px;
 	height:40px;
 	font-size:17px;
 	font-family:MS Pgothic;
@@ -56,7 +32,7 @@ logo {
 	transform: translateY(-50%) translateX(-50%);
 }
 .login-pass{
-	width:350px;
+	width:300px;
 	height:40px;
 	font-size:17px;
 	font-family:MS Pgothic;
@@ -69,21 +45,201 @@ logo {
 	transform: translateY(-50%) translateX(-50%);
 }
 .login-button{
-	width:100px;
-	height:40px;
+	width:300px;
+	height:38px;
 	font-size:17px;
 	font-family:MS Pgothic;
 	background-color:#666666;
 	color:white;
 	position: absolute;
-	top: 70%;
+	top: 62%;
 	left: 50%;
 	border-radius: 3px;
-	border: 1px solid #888888;
 	-webkit-transform: translateY(-50%) translateX(-50%);
 	transform: translateY(-50%) translateX(-50%);
-	border:solid 1px #777777;
+	border:solid 1px #666666;
 	text-shadow: none;
 }
 
+.cp_iptxt {
+	position: absolute;
+	width: 24%;
+	margin: 40px 38%;
+	top: 30%;
+	left: 0%;
+}
 
+.cp_iptxt input[type='text'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 4.5em;
+}
+.cp_iptxt input[type='text']:focus {
+	outline: none;
+}
+
+.ef {
+	padding: 7px 14px;
+	transition: 0.4s;
+	border: 1px solid #666666;
+	border-radius: 3px;
+	background: transparent;
+}
+.ef ~ .focus_line:before,
+.ef ~ .focus_line:after {
+	position: absolute;
+	top: -1px;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	content: '';
+	transition: 0.4s;
+	background-color: #0080ff;
+}
+.ef ~ .focus_line:after {
+	top: auto;
+	bottom: 0;
+}
+.ef ~ .focus_line i:before,
+.ef ~ .focus_line i:after {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 2px;
+	height: 0;
+	content: '';
+	transition: 0.6s;
+	background-color: #0080ff;
+}
+.ef ~ .focus_line i:after {
+	right: 0;
+	left: auto;
+}
+.ef:focus ~ .focus_line:before,
+.ef:focus ~ .focus_line:after,
+.cp_iptxt.ef ~ .focus_line:before,
+.cp_iptxt.ef ~ .focus_line:after {
+	left: 0;
+	width: 100%;
+	transition: 0.4s;
+}
+.ef:focus ~ .focus_line i:before,
+.ef:focus ~ .focus_line i:after,
+.cp_iptxt.ef ~ .focus_line i:before,
+.cp_iptxt.ef ~ .focus_line i:after {
+	top: -1px;
+	height: 100%;
+	transition: 0.6s;
+}
+.ef ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 10px;
+	left: 14px;
+	width: 100%;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	font-family:MS Pgothic;
+	color: #666666;
+}
+.ef:focus ~ label,
+.cp_iptxt.ef ~ label {
+	font-size: 12px;
+	font-family:gothic;
+	top: -18px;
+	left: 0;
+	transition: 0.3s;
+	color: #0080ff;
+}
+
+.cf_iptxt {
+	position: absolute;
+	width: 24%;
+	margin: 40px 38%;
+	top: 41%;
+	left: 0%;
+}
+.cf_iptxt input[type='password'] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 6.5em;
+}
+.cf_iptxt input[type='password']:focus {
+	outline: none;
+}.cf {
+	padding: 7px 14px;
+	transition: 0.4s;
+	border: 1px solid #666666;
+	border-radius: 3px;
+	background: transparent;
+}
+.cf ~ .focus_line:before,
+.cf ~ .focus_line:after {
+	position: absolute;
+	top: -1px;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	content: '';
+	transition: 0.4s;
+	background-color: #0080ff;
+}
+.cf ~ .focus_line:after {
+	top: auto;
+	bottom: 0;
+}
+.cf ~ .focus_line i:before,
+.cf ~ .focus_line i:after {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 2px;
+	height: 0;
+	content: '';
+	transition: 0.6s;
+	background-color: #0080ff;
+}
+.cf ~ .focus_line i:after {
+	right: 0;
+	left: auto;
+}
+.cf:focus ~ .focus_line:before,
+.cf:focus ~ .focus_line:after,
+.cf_iptxt.cf ~ .focus_line:before,
+.cf_iptxt.cf ~ .focus_line:after {
+	left: 0;
+	width: 100%;
+	transition: 0.4s;
+}
+.cf:focus ~ .focus_line i:before,
+.cf:focus ~ .focus_line i:after,
+.cf_iptxt.cf ~ .focus_line i:before,
+.cf_iptxt.cf ~ .focus_line i:after {
+	top: -1px;
+	height: 100%;
+	transition: 0.6s;
+}
+.cf ~ label {
+	position: absolute;
+	z-index: -1;
+	top: 10px;
+	left: 14px;
+	width: 100%;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	font-family:MS Pgothic;
+	color: #666666;
+}
+.cf:focus ~ label,
+.cf_iptxt.cf ~ label {
+	font-size: 12px;
+	font-family:gothic;
+	top: -18px;
+	left: 0;
+	transition: 0.3s;
+	color: #0080ff;
+}

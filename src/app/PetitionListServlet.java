@@ -17,22 +17,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/bookdetail")
-public class BookDetailServlet extends HttpServlet {
+@WebServlet("/api/petitionList")
+public class PetitionListServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
 
-		String title = request.getParameter("title");
-		System.out.println("title="+title);
+		String employeeid = request.getParameter("employeeid");
+		System.out.println("employeeid="+employeeid);
 
-		String sql = " select " + " BOOK_ID , " + " BOUGHT_ON , " + " BOUGHT_BY , " + " AUTHOR , "  + " TITLE , " + " PUBLISHER , " + " GENRE , " +
+		String sql = " select EMPLOYEE_ID, TITLE, AUTHOR, STATUS " + " from TR_REQUEST_BOOKS " +
+				" where 1=1 " + " and EMPLOYEE_ID = '"+employeeid+"'";
 
-		" NUMBER_BOOKS , " + " STATUS , " + " REND_DATA " + " from " + " MS_BOOKS " +  " where 1=1 " + " and TITLE = '" + title + "' ";
 
-
-		List<BookDetail> list = new ArrayList<>();
+		List<petition> list = new ArrayList<>();
 
 		// エラーが発生するかもしれない処理はtry-catchで囲みます
 		// この場合はDBサーバへの接続に失敗する可能性があります
@@ -48,20 +47,14 @@ public class BookDetailServlet extends HttpServlet {
 
 
 			while (rs1.next()) {
-				BookDetail book = new BookDetail();
+				petition pe = new petition();
 
-				book.setBookId(rs1.getString("BOOK_ID"));
-				book.setBoughtOn(rs1.getString("BOUGHT_ON"));
-				book.setBoughtBy(rs1.getString("BOUGHT_BY"));
-				book.setAuthor(rs1.getString("AUTHOR"));
-				book.setTitle(rs1.getString("TITLE"));
-				book.setPublisher(rs1.getString("PUBLISHER"));
-				book.setGenre(rs1.getString("GENRE"));
-				book.setNumberBooks(rs1.getString("NUMBER_BOOKS"));
-				book.setStatus(rs1.getString("STATUS"));
-				book.setRendData(rs1.getString("REND_DATA"));
+				pe.setEmployeeid(rs1.getString("EMPLOYEE_ID"));
+				pe.setTitle(rs1.getString("TITLE"));
+				pe.setAuthor(rs1.getString("AUTHOR"));
+				pe.setStatus(rs1.getString("STATUS"));
 
-				list.add(book);
+				list.add(pe);
 			}
 
 			// アクセスした人に応答するためのJSONを用意する

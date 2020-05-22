@@ -17,18 +17,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/api/managerbookdetail")
-public class ManagerBookDetailServlet extends HttpServlet {
+@WebServlet("/api/memberbookdetail")
+public class MemberBookDetailServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
+
 		String title = request.getParameter("title");
 		System.out.println("title="+title);
 
-
 		String sql = " select " + " BOOK_ID , " + " BOUGHT_ON , " + " BOUGHT_BY , " + " AUTHOR , "  + " TITLE , " + " PUBLISHER , " + " GENRE , " +
+
 		" NUMBER_BOOKS , " + " STATUS , " + " REND_DATA " + " from " + " MS_BOOKS " +  " where 1=1 " + " and TITLE = '" + title + "' ";
+
 
 		List<MemberBookDetail> list = new ArrayList<>();
 

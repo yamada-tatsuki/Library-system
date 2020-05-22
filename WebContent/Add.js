@@ -36,7 +36,7 @@ var registItem = function () {
 	});
 }
 
-<<<<<<< HEAD
+
 //編集機能
 var change = function(){
 	console.log('aaa');
@@ -94,9 +94,6 @@ function getParam(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 function GetParameter(){
-=======
-/*function GetParameter(){
->>>>>>> 4062441c1a044982deff458b1f7de9abd7297b63
 	var parameter  = location.search.substring( 1, location.search.length );
 	parameter = decodeURIComponent( parameter );
 	parameter = parameter.split('=')[1];
@@ -105,18 +102,12 @@ function GetParameter(){
 	$('#add-button').html('<button id="register-button" onclick="registItem()">登録</button>')
 		console.log('ない')
 	}else{
-<<<<<<< HEAD
+
 	$('#add-button').html('<button id="change-button" onclick="change()">編集</button>')
 	$('#add-button2').html('<button id="return-button" onclick="location.href=\'./ManagerBooksList.html?role=MANAGER\'">戻る</button>')
 		console.log('ある')
 	}
 }
-=======
-	$('#add-button').html('<button id="change-button" onclick="ChangeItem()">編集</button>')
-		console.log('ある')
-	}
-}*/
->>>>>>> 4062441c1a044982deff458b1f7de9abd7297b63
 
 /**
  * 読み込み時の動作
@@ -124,10 +115,7 @@ function GetParameter(){
 $(document).ready(function() {
 	// 登録ボタンを押したときのイベント
 	$('#js-register').click(registItem);
-<<<<<<< HEAD
+
 	GetParameter();
-=======
-	//GetParameter();
->>>>>>> 4062441c1a044982deff458b1f7de9abd7297b63
 
 });
