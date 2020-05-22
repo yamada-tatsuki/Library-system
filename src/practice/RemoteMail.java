@@ -17,7 +17,7 @@ public class RemoteMail {
 	// Google account mail address
 	private String username = "zidongmeru@gmail.com";
 	// Google app password
-	private String password = "naohiro1997";
+	private String password = "ccewbguldyjpwdjv";
 
 	// private String charset = "ISO-2022-JP";
 	private String charset = "UTF-8";
@@ -55,6 +55,7 @@ public class RemoteMail {
 			email.setSmtpPort(port);
 			email.setCharset(charset);
 			email.setHeaders(headers);
+//			email.setAuthenticator(new DefaultAuthenticator(username, password));
 			email.setAuthenticator(new DefaultAuthenticator(username, password));
 			email.setStartTLSEnabled(starttls);
 			email.setFrom(from);
@@ -68,6 +69,11 @@ public class RemoteMail {
 		} catch (EmailException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+
 	}
 
 }
