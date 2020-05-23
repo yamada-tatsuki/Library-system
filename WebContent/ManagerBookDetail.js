@@ -102,6 +102,7 @@ $(document).ready(function () {
 	executeAjax();
 	$('#logout').click(logout);
 
+
 	//$('#table_data').ready('road',executeAjax);
 
 });

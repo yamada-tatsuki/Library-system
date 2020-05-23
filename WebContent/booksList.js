@@ -121,6 +121,7 @@ function booksSearch(){
 				$('#booksTable').append(columName);
 
 				for(var i=0; i<json.length; i++){
+
 					var row = '<tr>'
 						if(userRole === "MANAGER"){
 							row +='<td>'+'<a id="detail" onclick=moveToDetail(\''+json[i].title+'\')  href="./ManagerBookDetail.html?title='+json[i].title+'\">'+json[i].title+'</a>'+'</td>'
