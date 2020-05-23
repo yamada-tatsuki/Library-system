@@ -45,7 +45,6 @@ public class ReturnServlet extends HttpServlet {
 
 
 
-
 		// JDBCドライバの準備
 		try {
 			// JDBCドライバのロード
@@ -92,6 +91,7 @@ public class ReturnServlet extends HttpServlet {
 							"MS_BOOKS \n" +
 							"where 1=1 \n" +
 							"and BOOK_ID='"+bookId+"' \n");
+
 
 			int numberOfBooks=0;
 
