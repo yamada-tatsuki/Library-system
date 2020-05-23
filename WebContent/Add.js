@@ -115,7 +115,7 @@ function GetParameter(){
  */
 $(document).ready(function() {
 	// 登録ボタンを押したときのイベント
-	$('#js-register').click(registItem);
+	//$('#js-register').click(registItem);
 
 	GetParameter();
 

@@ -44,10 +44,11 @@ function executeAjax () {
 
 
 				var elements = json[i];
+				if(elements.boughtOn !=null){
 				var s = elements.boughtOn;
 				var str = s.replace( /-/g, '/' );
 				var ymd =  str.substr(0, 10);
-
+				}
 				console.log(ymd);
 
 				$('#js-title').html(elements.title);

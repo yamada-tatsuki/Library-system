@@ -57,6 +57,36 @@ function deleteAjax(){
 
 	});
 }
+//ログアウト機能
+function logout() {
+	// 入力されたユーザーIDとパスワード
+	var requestQuery = {
+		loginRequest : $(this).attr('value'),
+	};
+	// サーバーからデータを取得する
+	$.ajax({
+		type : 'GET',
+		dataType : 'json',
+		url : '/myFirstApp/LoginLogoutServlet',// url変えろ
+		data : requestQuery,
+		success : function(json) {
+			if (json.result === "ok") {
+				alert('ログインして');
+				// 画面遷移
+
+			} else {
+				alert('ログアウトしました。');
+				location.href = 'Login.html';
+			}
+
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			// サーバーとの通信に失敗した時の処理
+			alert('データの通信に失敗しました');
+			console.log(errorThrown)
+		}
+	});
+}
 
 function koshin(){
 	location.reload();
@@ -67,5 +97,6 @@ $(document).ready(function() {
 
 	// 初期表示用
 	executeAjax();
+	$('#logout').click(logout);
 
 });

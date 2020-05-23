@@ -57,7 +57,10 @@ public class BookGenre extends HttpServlet {
 		String sql = "select distinct \n" +
 				"	bo.GENRE \n" +
 				"from \n" +
-				"	MS_BOOKS bo \n" ;
+				"	MS_BOOKS bo \n" +
+				"where \n" +
+				"	1=1 \n" +
+				"	and bo.GENRE is not null \n" ;
 
 		System.out.println(sql);
 

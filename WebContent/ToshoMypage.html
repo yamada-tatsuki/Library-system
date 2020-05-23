@@ -9,12 +9,12 @@
 <script type="text/javascript" src="Mypage.js"></script>
 </head>
 <body>
-<header><button id="js-logout-button" value="logout" >ログアウト</button></header>
+<header><input type="button" value="ログアウト" id="logout"></header>
  <nav>
 		<div><button onclick="location.href='./ManagerBooksList.html?role=MANAGER'">蔵書一覧</button></div>
 		<div><button onclick="location.href='./Add.html'">蔵書登録</button></div>
-		<div><button onclick="">嘆願</button></div>
-		<div><button onclick="">嘆願承認リスト</button></div>
+		<div><button onclick="location.href='./ManagerPetition.html'">嘆願</button></div>
+		<div><button onclick="location.href='./PetitionApproval.html'">嘆願承認リスト</button></div>
 		</nav>
 		<div id="table">
 		<table id="syainData">

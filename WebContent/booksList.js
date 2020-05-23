@@ -199,7 +199,7 @@ function borrowBooks(bookId){
 
 
 //削除機能（画面から）
-var change = function(o,bookId){
+var deletion = function(o,bookId){
 	console.log('aaa');
 	//ディスプレイから表示を消す
 	var TR = o.parentNode.parentNode;
@@ -241,13 +241,14 @@ function pulldownList(){
 		dataType : 'json',
 		success :function(json){
 			console.log(json);
-
 			var blank =  '<option>'+'</option>';
 			$('#genre').append(blank);
 			for(var i=0; i<json.length; i++){
 				var genre = '<option>' + json[i].genre + '</option>';
 				$('#genre').append(genre);
+
 			}
+
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown){
 			alert('プルダウンリストの表示に失敗');
@@ -255,6 +256,12 @@ function pulldownList(){
 		}
 	});
 }
+
+
+
+
+
+
 
 //詳細ページに遷移
 function moveToDetail(title){
