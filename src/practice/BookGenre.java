@@ -60,7 +60,8 @@ public class BookGenre extends HttpServlet {
 				"	MS_BOOKS bo \n" +
 				"where \n" +
 				"	1=1 \n" +
-				"	and bo.GENRE is not null \n";
+				"	and bo.GENRE is not null \n" ;
+
 
 		System.out.println(sql);
 

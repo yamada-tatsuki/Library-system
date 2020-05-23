@@ -1,7 +1,5 @@
-
 @CHARSET "UTF-8";
 /* ヘッダー */
-
 body {
     display: block;
     margin: 0px;
@@ -16,8 +14,6 @@ body {
 	background-size:cover;
 	background-repeat: no-repeat;
 }
-
-
 /** インプットフォーム **/
 .login-id{
 	width:300px;
@@ -32,7 +28,6 @@ body {
 	-webkit-transform: translateY(-50%) translateX(-50%);
 	transform: translateY(-50%) translateX(-50%);
 }
-
 .login-pass{
 	width:300px;
 	height:40px;
@@ -46,7 +41,6 @@ body {
 	-webkit-transform: translateY(-50%) translateX(-50%);
 	transform: translateY(-50%) translateX(-50%);
 }
-
 .login-button{
 	width:300px;
 	height:38px;
@@ -63,7 +57,6 @@ body {
 	border:solid 1px #666666;
 	text-shadow: none;
 }
-
 .cp_iptxt {
 	position: absolute;
 	width: 24%;
@@ -71,7 +64,6 @@ body {
 	top: 30%;
 	left: 0%;
 }
-
 .cp_iptxt input[type='text'] {
 	font: 15px/24px sans-serif;
 	box-sizing: border-box;
@@ -82,7 +74,6 @@ body {
 .cp_iptxt input[type='text']:focus {
 	outline: none;
 }
-
 .ef {
 	padding: 7px 14px;
 	transition: 0.4s;
@@ -156,7 +147,6 @@ body {
 	transition: 0.3s;
 	color: #0080ff;
 }
-
 .cf_iptxt {
 	position: absolute;
 	width: 24%;
@@ -246,4 +236,3 @@ body {
 	transition: 0.3s;
 	color: #0080ff;
 }
-

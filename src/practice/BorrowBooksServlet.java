@@ -1,3 +1,4 @@
+
 package practice;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -218,8 +219,4 @@ public class BorrowBooksServlet extends HttpServlet {
 		}
 	}
 }
-
-
-
-
 

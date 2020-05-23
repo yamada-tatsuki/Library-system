@@ -1,3 +1,4 @@
+
 function judgAjax() {
 	$.ajax({
 		type : 'GET',
@@ -286,3 +287,5 @@ $(document).ready(function(){
 	$('#detail').click(moveToDetail);
 	$('#logout').click(logout);
 });
+
+
