@@ -1,3 +1,4 @@
+
 function judgAjax() {
 	$.ajax({
 		type : 'GET',
@@ -141,3 +142,13 @@ function DeleteItem (bookId){
 	});
 }
 
+
+
+$(document).ready(function () {
+	'use strict';
+	// 初期表示用
+	 executeAjax();
+	// $('.js-return').click((e)=>DeleteItem($(e.currentTarget).attr('id')));
+
+
+});

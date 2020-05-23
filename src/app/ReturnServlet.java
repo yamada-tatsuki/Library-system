@@ -36,9 +36,11 @@ public class ReturnServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		//String itemTitle = request.getParameter("itemTitle");
 		//String itemAuthor = request.getParameter("itemAuthor");
 		String bookId = request.getParameter("bookId");
+
 
 
 
@@ -73,6 +75,7 @@ public class ReturnServlet extends HttpServlet {
 				Statement stmt = con.createStatement();
 			) {
 			// SQLの命令文を実行し、その件数をint型のresultCountに代入します
+
 			String sql ="delete from TR_RENTALS \n" +
 					"where \n" +
 					"BOOK_ID='"+bookId+"'" ;
