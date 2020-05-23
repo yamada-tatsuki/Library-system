@@ -3,23 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Loginoage</title>
-
+<link rel="stylesheet" href="./Login.css" type="text/css">
 <!-- JavaScriptの読み込み -->
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 <script type="text/javascript" src="Login.js"></script>
 </head>
 <body>
-	<!--  header -->
-	<div class="header">
-		<h1>ログイン</h1>
-	</div>
 	<!--  メインコンテンツ -->
-	<div class="content">
-		<input type="text" placeholder="社員Id" id="js-login-id"class="login-id"required></input>
-		<input type="password" placeholder="パスワード"id="js-login-pass" class="login-pass"required></input>
-		<button id="js-login-button" class="login-button" id="GE">ログイン</button>
-		<button id="js-logout-id" value="logout" >ログアウト</button>
+	<div class="cp_iptxt">
+	<input class="ef" type="text" placeholder="" id="js-login-id"required>
+	<label>社員ID</label>
+	<span class="focus_line"><i></i></span>
 	</div>
 
+	<div class="cf_iptxt">
+	<input class="cf" type="password" placeholder="" id="js-login-pass"required>
+	<label>パスワード</label>
+	<span class="focus_line"><i></i></span>
+	</div>
+		<button id="js-login-button" class="login-button" id="GE">ログイン</button>
+		<!--<button id="js-logout-id" value="logout" >ログアウト</button>-->
 </body>
 </html>
+

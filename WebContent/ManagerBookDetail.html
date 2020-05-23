@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>書籍詳細ページ</title>
+<!-- CSSの読み込み -->
+<link rel="stylesheet" href="./itemDetail.css"type="text/css">
+<!-- JavaScriptの読み込み -->
+<script type="text/javascript" src="jquery-1.10.2.js"></script>
+<script type="text/javascript" src="ManagerBookDetail.js"></script>
+</head>
+<body>
+	<!-- ヘッダー -->
+	<div class="header">
+	<input type="button" value="ログアウト" id="logout">
+	</div>
+	<!-- メインコンテンツ -->
+	<div class="content">
+		<div class="book-detail">
+			<table id ="table_data">
+				<tr>
+					<th>タイトル</th>
+					<td id="js-title"></td>
+				</tr>
+				<tr>
+					<th>作者</th>
+					<td id="js-author"></td>
+				</tr>
+				<tr>
+					<th>出版社</th>
+					<td id="js-publisher"></td>
+				</tr>
+				<tr>
+					<th>ジャンル</th>
+					<td id="js-genre"></td>
+				</tr>
+				<tr>
+					<th>貸出状況</th>
+				    <td id="js-status"></td>
+				</tr>
+				<tr>
+					<th>購入者</th>
+				    <td id="js-boughtby"></td>
+				</tr>
+				<tr>
+					<th>購入日</th>
+				    <td id="js-boughton"></td>
+				</tr>
+				<tr>
+					<th>貸出回数</th>
+				    <td id="js-renddata"></td>
+				</tr>
+			</table>
+		</div>
+		</div>
+		<button id="js-rental-button">借りる</button>
+		<p>
+		<button id="js-cancel-button" onclick="location.href='./ManagerBooksList.html?role=MANAGER'">一覧に戻る</button>
+</body>
+</html>
