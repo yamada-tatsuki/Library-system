@@ -37,7 +37,7 @@ $(document).ready(function () {
 	'use strict';
 	// 初期表示用
 	 executeAjax();
-	 $('.js-return').click((e)=>DeleteItem($(e.currentTarget).attr('id')));
+	// $('.js-return').click((e)=>DeleteItem($(e.currentTarget).attr('id')));
 
 
 });
