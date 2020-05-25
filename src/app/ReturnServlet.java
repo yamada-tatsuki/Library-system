@@ -37,10 +37,10 @@ public class ReturnServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+
 		//String itemTitle = request.getParameter("itemTitle");
 		//String itemAuthor = request.getParameter("itemAuthor");
 		String bookId = request.getParameter("bookId");
-
 
 
 
@@ -79,7 +79,6 @@ public class ReturnServlet extends HttpServlet {
 					"where \n" +
 					"BOOK_ID='"+bookId+"'" ;
 			int resultCount = stmt.executeUpdate(sql);
-
 
 			if(resultCount!=1){
 				result=false;

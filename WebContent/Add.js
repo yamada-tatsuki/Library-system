@@ -1,5 +1,3 @@
-
-
 function judgAjax() {
 	$.ajax({
 		type : 'GET',

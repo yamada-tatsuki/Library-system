@@ -13,6 +13,7 @@ function judgAjax() {
 		}
 	});
 }
+
 var userRole;
 //URLからパラメータの部分を取得
 function GetQueryString() {
@@ -284,4 +285,4 @@ $(document).ready(function(){
 	$('#search').click(booksSearch);
 	$('#detail').click(moveToDetail);
 	$('#logout').click(logout);
-});
+})

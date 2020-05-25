@@ -1,4 +1,3 @@
-
 function judgAjax() {
 	$.ajax({
 		type : 'GET',
@@ -14,8 +13,6 @@ function judgAjax() {
 		}
 	});
 }
-
-
 
 function executeAjax () {
 	'use strict';
@@ -143,78 +140,3 @@ function DeleteItem (bookId){
 		}
 	});
 }
-
-
-
-$(document).ready(function () {
-	'use strict';
-	// 初期表示用
-	judgAjax();
-	 executeAjax();
-	// $('.js-return').click((e)=>DeleteItem($(e.currentTarget).attr('id')));
-	 $('#logout').click(logout);
-
-
-
-});
-
-function DeleteItem (bookId){
-	var id = bookId;
-	var requestQuery={bookId : id};
-
-	// サーバーにデータを送信する。
-	$.ajax({
-		type : 'GET',
-		dataType:'json',
-		url : '/myFirstApp/ReturnServlet',
-		data : requestQuery,
-		success : function(result) {
-			// サーバーとの通信に成功した時の処理
-			// 確認のために返却値を出力
-			console.log('返却値', result);
-			// 登録完了のアラート
-			if(result==true){
-			alert('返却が完了しました');
-			location.reload();
-			}
-			else if(result==false){
-				alert('NG');
-			}
-		},
-		error:function(XMLHttpRequest, textStatus, errorThrown){
-			// サーバーとの通信に失敗した時の処理
-			alert('データの通信に失敗しました');
-			console.log(errorThrown)
-		}
-	});
-}
-function logout() {
-	// 入力されたユーザーIDとパスワード
-	var requestQuery = {
-		loginRequest : $(this).attr('value'),
-	};
-	// サーバーからデータを取得する
-	$.ajax({
-		type : 'GET',
-		dataType : 'json',
-		url : '/myFirstApp/LoginLogoutServlet',// url変えろ
-		data : requestQuery,
-		success : function(json) {
-			if (json.result === "ok") {
-				alert('ログインして');
-				// 画面遷移
-
-			} else {
-				alert('ログアウトしました。');
-				location.href = 'Login.html';
-			}
-
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			// サーバーとの通信に失敗した時の処理
-			alert('データの通信に失敗しました');
-			console.log(errorThrown)
-		}
-	});
-}
-

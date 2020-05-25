@@ -86,7 +86,6 @@ function logout() {
 				alert('ログアウトしました。');
 				location.href = 'Login.html';
 			}
-
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
@@ -95,7 +94,6 @@ function logout() {
 		}
 	});
 }
-
 function koshin(){
 	location.reload();
 }
@@ -105,5 +103,4 @@ $(document).ready(function() {
 	// 初期表示用
 	executeAjax();
 	$('#logout').click(logout);
-
 });

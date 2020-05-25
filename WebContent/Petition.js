@@ -1,4 +1,3 @@
-
 function judgAjax() {
 	$.ajax({
 		type : 'GET',
@@ -26,13 +25,17 @@ function executeAjax3() {
 		dataType : 'json',
 		//data :requestQuery,
 		success : function (json) {
+
 			for (var i = 0; i < json.length; i++) {
+
 				var element = json[i];
+
 				var record = '<tr>'
 					+ '<td>' + element.title + '</td>'
 					+ '<td>' + element.author + '</td>'
 					+ '<td>' + element.status + '</td>'
 					+ '</tr>';
+
 				$('#PetitionTable').append(record)
 				$("td:contains('承認')").css("color","#0080ff");
 				$("td:contains('却下')").css("color","#ff0000");
@@ -40,20 +43,24 @@ function executeAjax3() {
 		}
 	});
 }
+
 var add = function(){
 	var inputtitle = $('#js-title').val();
 	var inputauthor = $('#js-author').val();
+
 	var requestQuery = {
 			Title : inputtitle,
 			Author : inputauthor
 	};
 	console.log(requestQuery);
+
 	$.ajax({
 		type : 'POST',
 		url : '/myFirstApp/api/petition',
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
+
 					// サーバーと䛾通信に成功した時䛾処理
 					// 確認䛾ために返却値を出力
 					console.log(json);
@@ -67,9 +74,11 @@ var add = function(){
 					}
 					});
 }
+
 function func1() {
     document.location.reload();
   }
+
 //ログアウト機能
 function logout() {
 	// 入力されたユーザーIDとパスワード
@@ -86,10 +95,12 @@ function logout() {
 			if (json.result === "ok") {
 				alert('ログインして');
 				// 画面遷移
+
 			} else {
 				alert('ログアウトしました。');
 				location.href = 'Login.html';
 			}
+
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
@@ -98,6 +109,7 @@ function logout() {
 		}
 	});
 }
+
 $(document).ready(function () {
 	//'use strict';
 	judgAjax();
@@ -105,4 +117,5 @@ $(document).ready(function () {
 	// 初期表示用
 	executeAjax3();
 	$('#logout').click(logout);
+
 });
