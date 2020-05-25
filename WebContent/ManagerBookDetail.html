@@ -4,19 +4,64 @@
 <meta charset="UTF-8">
 <title>書籍詳細ページ</title>
 <!-- CSSの読み込み -->
-<link rel="stylesheet" href="./itemDetail.css"type="text/css">
+<link rel="stylesheet" href="./Detail.css"type="text/css">
 <!-- JavaScriptの読み込み -->
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 <script type="text/javascript" src="ManagerBookDetail.js"></script>
 </head>
-<body>
-	<!-- ヘッダー -->
-	<div class="header">
-	<input type="button" value="ログアウト" id="logout">
+<div class="header">
+	<div class ="header_inner">
+	 	<div class="header_logo"></div>
+		<div class ="header_logout">
+			<button id="logout"  value="logout"class="logout-button" >ログアウト</button>
+		</div>
 	</div>
-	<!-- メインコンテンツ -->
-	<div class="content">
-		<div class="book-detail">
+</div>
+
+<body id="all">
+<nav>
+  <UL>
+   <li class="var_nav"value="マイページ" id="mypage" onclick="location.href='./ToshoMypage.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>マイページ</span></a>
+      </div>
+   </li>
+   <li class="var_nav" value="嘆願" id="request"onclick="location.href='./ManagerPetition.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>嘆願</span></a>
+      </div>
+   </li>
+   <li class="var_nav"value="嘆願承認リスト" id="approval" onclick="location.href='./PetitionApproval.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>嘆願承認リスト</span></a>
+      </div>
+   </li>
+   <li class="var_nav"value="蔵書登録" id="add" onclick="location.href='./Add.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>蔵書登録</span></a>
+      </div>
+   </li>
+  </UL>
+</nav>
+<div class="booklist">
+		<div class="label"></div>
+		</div>
 			<table id ="table_data">
 				<tr>
 					<th>タイトル</th>
@@ -51,10 +96,8 @@
 				    <td id="js-renddata"></td>
 				</tr>
 			</table>
-		</div>
-		</div>
-		<button id="js-rental-button">借りる</button>
-		<p>
-		<button id="js-cancel-button" onclick="location.href='./ManagerBooksList.html?role=MANAGER'">一覧に戻る</button>
+		<div id="borrow"></div>
+		<button id="js-cancel-button" class="return2" onclick="location.href='./ManagerBooksList.html?role=MANAGER'">一覧に戻る</button>
+<div class="space"></div>
 </body>
 </html>

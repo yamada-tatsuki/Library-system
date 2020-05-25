@@ -3,39 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <title>蔵書一覧ページ</title>
-<!-- <link rel="stylesheet" type="text/css" href="ListPage.css"> -->
+<link rel="stylesheet" href="./List.css" type="text/css">
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 <script type="text/javascript" src="booksList.js"></script>
 </head>
-<header>
-	<input type="button" value="ログアウト" id="logout">
-</header>
-<form>
-	<input type="text" placeholder="タイトル" id="title"></input>
-	<input type="text" placeholder="作者" id="author"></input>
-	<select name="genre" id="genre">
-		<option value='' disabled selected style='display:none;'>ジャンル</option>
-	</select>
-	<input type="button" value="検索" id="search"></input>
-</form>
-<nav>
-	<!-- マイページボタンと嘆願ボタンはidを共通にする -->
-
-	<input type="button" value="マイページ" id="mypage" onclick="location.href='./SyainMypage.html'"></input>
-	<input type="button" value="嘆願" id="request"onclick="location.href='./MemberPetition.html'"></input>
-
-
-</nav>
-<div>
-	<table id="booksTable">
-		<tr>
-			<th>書籍名</th>
-			<th>作者</th>
-			<th>貸出状況</th>
-			<th>レンタル</th>
-		</tr>
-	</table>
+<div class="header">
+	<div class ="header_inner">
+	 	<div class="header_logo"></div>
+		<div class ="header_logout">
+			<button id="logout"  value="logout"class="logout-button" >ログアウト</button>
+		</div>
+	</div>
 </div>
-<body>
+<body id="all">
+<nav>
+  <UL>
+   <li class="var_nav"value="マイページ" id="mypage" onclick="location.href='./SyainMypage.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>マイページ</span></a>
+      </div>
+   </li>
+   <li class="var_nav" value="嘆願" id="request"onclick="location.href='./MemberPetition.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>嘆願</span></a>
+      </div>
+   </li>
+  </UL>
+</nav>
+	<div class="booklist">
+		<div class="label"></div>
+		</div>
+		<div class ="list">
+		<form>
+		<div class="inline-block">
+			<input type="text" placeholder="　書籍名" id="title" class = "box1"></input>
+			</div>
+			<div class="inline-block">
+			<input type="text" placeholder="　作者" id="author" class = "box2"></input>
+			</div>
+			<div class="inline-block">
+			<div class="pulldown">
+			<select name="genre" id="genre" class="round">
+			<option value='' disabled selected style='display:none;'>ジャンル</option>
+			</select></div></div>
+			<div class="inline-block">
+			<input type="button" value="検索" id="search" class="search"></input>
+			</div>
+		</form>
+			<table id="booksTable">
+				<tr>
+				<th>書籍名</th>
+				<th>作者</th>
+				<th>貸出状況</th>
+				<th>レンタル</th>
+				</tr>
+			</table>
+		</div>
 </body>
 </html>

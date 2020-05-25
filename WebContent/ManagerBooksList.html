@@ -3,46 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <title>蔵書一覧ページ（管理者用）</title>
-<!-- <link rel="stylesheet" type="text/css" href="ListPage.css"> -->
+<link rel="stylesheet" href="./List.css" type="text/css">
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 <script type="text/javascript" src="booksList.js"></script>
 </head>
-<header>
-	<input type="button" value="ログアウト" id="logout">
-</header>
-<body>
-	<form>
-		<input type="text" placeholder="タイトル" id="title"></input>
-		<input type="text" placeholder="作者" id="author"></input>
-		<select name="genre" id="genre">
+<div class="header">
+	<div class ="header_inner">
+	 	<div class="header_logo"></div>
+		<div class ="header_logout">
+			<button id="logout"  value="logout"class="logout-button" >ログアウト</button>
+		</div>
+	</div>
+</div>
+<body id="all">
+<nav>
+  <UL>
+   <li class="var_nav"value="マイページ" id="mypage" onclick="location.href='./ToshoMypage.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>マイページ</span></a>
+      </div>
+   </li>
+   <li class="var_nav" value="嘆願" id="request"onclick="location.href='./ManagerPetition.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>嘆願</span></a>
+      </div>
+   </li>
+   <li class="var_nav"value="嘆願承認リスト" id="approval" onclick="location.href='./PetitionApproval.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>嘆願承認リスト</span></a>
+      </div>
+   </li>
+   <li class="var_nav"value="蔵書登録" id="add" onclick="location.href='./Add.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>蔵書登録</span></a>
+      </div>
+   </li>
+  </UL>
+</nav>
+
+<div class="booklist">
+		<div class="label"></div>
+		</div>
+		<div class ="list">
+		<form>
+		<div class="inline-block">
+			<input type="text" placeholder="　書籍名" id="title" class = "box1"></input>
+			</div>
+
+			<div class="inline-block">
+			<input type="text" placeholder="　作者" id="author" class = "box2"></input>
+			</div>
+
+			<div class="inline-block">
+			<div class="pulldown">
+			<select name="genre" id="genre" class="round">
 			<option value='' disabled selected style='display:none;'>ジャンル</option>
-		</select>
-		<select name="frequency" id="frequency">
+			</select></div></div>
+
+			<div class="inline-block">
+			<div class="pulldown2">
+			<select name="frequency" id="frequency" class="round">
 			<option value='' disabled selected style='display:none;'>貸出回数</option>
 			<option></option>
 			<option>昇順</option>
 			<option>降順</option>
-		</select>
-		<input type="button" value="検索" id="search"></input>
-	</form>
-	<nav>
-		<!-- マイページボタンと嘆願ボタンはidを共通にする -->
+		</select></div></div>
 
-		<input type="button" value="マイページ" id="mypage" onclick="location.href='./ToshoMypage.html'"></input>
-		<input type="button" value="嘆願" id="request"onclick="location.href='./ManagerPetition.html'"></input>
-		<input type="button" value="嘆願承認リスト" id="approval"></input>
-		<input type="button" value="蔵書登録" id="add"></input>
-
-	</nav>
-	<div>
-		<table id="booksTable">
-			<tr>
+			<div class="inline-block">
+			<input type="button" value="検索" id="search" class="search2"></input>
+			</div>
+		</form>
+			<table id="booksTable">
+				<tr>
 				<th>書籍名</th>
 				<th>作者</th>
 				<th>貸出状況</th>
 				<th>レンタル</th>
-			</tr>
-		</table>
-	</div>
+				<th>書籍編集</th>
+				<th>書籍削除</th>
+				</tr>
+			</table>
+		</div>
 </body>
 </html>

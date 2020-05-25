@@ -1,13 +1,29 @@
-function executeAjax() {
-	var emp = '0001';
-	var requestQuery = { employeeid : emp} ;
-    console.log(emp);
-	console.dir(requestQuery);
+function judgAjax() {
+	$.ajax({
+		type : 'GET',
+		url : '/myFirstApp/SessionJudgServlet',
+		dataType : 'json',
+		async : false,
+		success : function(json) {
+			console.log(json);
+			if(json.result === "no"){
+				var result ='<a href="./Login.html">'+"ログインしてください"+'</a>'
+				$('#all').html(result )
+			}
+		}
+	});
+}
+
+function executeAjax3() {
+	//var emp = ;
+	//var requestQuery = { employeeId : employeeId} ;
+    //console.log(emp);
+	//console.dir(requestQuery);
 	$.ajax({
 		type : 'GET',
 		url : '/myFirstApp/api/petitionList',
 		dataType : 'json',
-		data :requestQuery,
+		//data :requestQuery,
 		success : function (json) {
 
 			for (var i = 0; i < json.length; i++) {
@@ -21,6 +37,8 @@ function executeAjax() {
 					+ '</tr>';
 
 				$('#PetitionTable').append(record)
+				$("td:contains('承認')").css("color","#0080ff");
+				$("td:contains('却下')").css("color","#ff0000");
 			}
 		}
 	});
@@ -94,9 +112,10 @@ function logout() {
 
 $(document).ready(function () {
 	//'use strict';
+	judgAjax();
 	$('#petition').click(add);
 	// 初期表示用
-	executeAjax();
+	executeAjax3();
 	$('#logout').click(logout);
 
 });
