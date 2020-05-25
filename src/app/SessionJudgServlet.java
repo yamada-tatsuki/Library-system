@@ -1,3 +1,4 @@
+
 package app;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,4 +57,5 @@ public class SessionJudgServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

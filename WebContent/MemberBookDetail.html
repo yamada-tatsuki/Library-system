@@ -9,16 +9,22 @@
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 <script type="text/javascript" src="MemberBookDetail.js"></script>
 </head>
+
 <div class="header">
 	<div class ="header_inner">
 	 	<div class="header_logo"></div>
 		<div class ="header_logout">
 			<button id="logout"  value="logout"class="logout-button" >ログアウト</button>
 		</div>
-	</div>
-</div>
 
 <body id="all">
+	<!-- ヘッダー -->
+	<div class="header">
+
+		<button id="logout"  value="logout" >ログアウト</button>
+
+	</div>
+</div>
 <nav>
   <UL>
    <li class="var_nav"value="マイページ" id="mypage" onclick="location.href='./SyainMypage.html'">
@@ -66,8 +72,13 @@
 				    <td id="js-status"></td>
 				</tr>
 			</table>
+
+		</div>
 		<div id="borrow"></div>
-		<button id="js-cancel-button" class="return" onclick="location.href='./MemberBooksList.html?role=MEMBER'">一覧に戻る</button>
-<div class="space"></div>
+		<div>
+		<p>
+		<button id="js-cancel-button" onclick="location.href='./MemberBooksList.html?role=MEMBER'">一覧に戻る</button>
+		</p></div>
+
 </body>
 </html>

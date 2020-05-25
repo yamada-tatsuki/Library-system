@@ -57,6 +57,7 @@ public class LoginLogoutServlet extends HttpServlet {
 				// pw.append(new ObjectMapper().writeValueAsString("ログアウト完了。"));
 				responseData.put("result", "ng");
 			}
+
 		}
 		pw.append(new ObjectMapper().writeValueAsString(responseData));
 	}

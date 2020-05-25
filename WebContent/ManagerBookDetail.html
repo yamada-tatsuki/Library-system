@@ -9,14 +9,14 @@
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 <script type="text/javascript" src="ManagerBookDetail.js"></script>
 </head>
+
 <div class="header">
 	<div class ="header_inner">
 	 	<div class="header_logo"></div>
 		<div class ="header_logout">
 			<button id="logout"  value="logout"class="logout-button" >ログアウト</button>
 		</div>
-	</div>
-</div>
+
 
 <body id="all">
 <nav>
@@ -96,8 +96,12 @@
 				    <td id="js-renddata"></td>
 				</tr>
 			</table>
+
+		</div>
+		</div>
 		<div id="borrow"></div>
-		<button id="js-cancel-button" class="return2" onclick="location.href='./ManagerBooksList.html?role=MANAGER'">一覧に戻る</button>
-<div class="space"></div>
+		<p>
+		<button id="js-cancel-button" onclick="location.href='./ManagerBooksList.html?role=MANAGER'">一覧に戻る</button>
+</p>
 </body>
 </html>

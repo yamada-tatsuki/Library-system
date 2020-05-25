@@ -39,10 +39,8 @@ function GetQueryTitle() {
     }
     return result;
 }
-
 var paramn = GetQueryTitle();
 var titlename = paramn["title"];
-
 function executeAjax () {
 	'use strict';
 	var requestQuery = { title : titlename} ;
@@ -53,12 +51,8 @@ function executeAjax () {
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
-
 			for (var i = 0; i < json.length; i++) {
-
-
 				var elements = json[i];
-
 				$('#js-title').html(elements.title);
 				$('#js-author').html(elements.author);
 				$('#js-publisher').html(elements.publisher);
@@ -81,9 +75,11 @@ function getDate(day) {
 	  var month = date.getMonth() + 1;
 	  var day   = date.getDate();
 
+
 	   var today = String(year) + "-" + String(month) + "-" + String(day);
 	  return today;
 	}
+
 
 
 //貸出機能
@@ -109,8 +105,6 @@ function borrowBooks(bookId){
 			}else{
 				alert('貸出中です。')
 			}
-
-
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
@@ -136,12 +130,10 @@ function logout() {
 			if (json.result === "ok") {
 				alert('ログインして');
 				// 画面遷移
-
 			} else {
 				alert('ログアウトしました。');
 				location.href = 'Login.html';
 			}
-
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
@@ -150,12 +142,10 @@ function logout() {
 		}
 	});
 }
-
 $(document).ready(function () {
 	'use strict';
 	judgAjax();
 	// 初期表示用
 	executeAjax();
 	$('#logout').click(logout);
-
 });

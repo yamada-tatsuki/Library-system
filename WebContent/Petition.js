@@ -15,7 +15,6 @@ function judgAjax() {
 	});
 }
 
-
 function executeAjax3() {
 	//var emp = ;
 	//var requestQuery = { employeeId : employeeId} ;
