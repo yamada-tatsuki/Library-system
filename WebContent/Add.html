@@ -2,59 +2,95 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <title>蔵書登録・編集ページ</title>
+<link rel="stylesheet" type="text/css" href="Add.css">
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="Add.js"></script>
 		<script type="text/javascript" src="Login.js"></script>
 		<script type="text/javascript" src="booksList.js"></script>
 </head>
-<body>
-<header><button id="js-logout-button" value="logout" >ログアウト</button></header>
-<div id="zousho"></div>
-
-</head>
-<body>
-<header><button id="" value="logout" >ログアウト</button></header>
-<div id="zousho"></div>
-<article>
-      <p>
-           <label for="title">タイトル: </label>
-           <input type="text" name="title" id="title">
-       </p>
-        <p>
-           <label for="author">作者: </label>
-           <input type="text" name="author" id="author">
-       </p>
-        <p>
-           <label for="publisher">出版社: </label>
-           <input type="text" name="publishere" id="publisher">
-       </p>
-        <p>
-           <label for="janru">ジャンル: </label>
-           <input type="text" name="janru" id="janru">
-       </p>
-       <p>
-           <label for="bought_by">購入日: </label>
-           <input type="text" name="bought_on" id="bought_on">
-       </p>
-       <p>
-           <label for="bought_by">購入者: </label>
-           <input type="text" name="bought_by" id="bought_by">
-       </p>
-
-	 <div id="add-button"></div>
-	  <div id="add-button2"></div>
-   </article>
-
-
-
-   <nav>
-		<div><button onclick="">蔵書一覧</button></div>
-		<div><button onclick="">マイページ</button></div>
-		<div><button onclick="">嘆願</button></div>
-		<div><button onclick="">嘆願承認リスト</button></div>
-		</nav>
-
+<div class="header">
+	<div class ="header_inner">
+	 	<div class="header_logo"></div>
+		<div class ="header_logout">
+			<button id="logout"  value="logout"class="logout-button" >ログアウト</button>
+		</div>
+	</div>
+</div>
+<body id="all">
+<nav>
+  <UL>
+  <li class="var_nav"value="蔵書一覧" id="list" onclick="location.href='./ManagerBooksList.html?role=MANAGER'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>蔵書一覧</span></a>
+      </div>
+   </li>
+   <li class="var_nav"value="マイページ" id="mypage" onclick="location.href='./ToshoMypage.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>マイページ</span></a>
+      </div>
+   </li>
+   <li class="var_nav"value="嘆願" id="request" onclick="location.href='./ManagerPetition.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>嘆願</span></a>
+      </div>
+   </li>
+   <li class="var_nav"value="嘆願承認リスト" id="approval" onclick="location.href='./PetitionApproval.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>嘆願承認リスト</span></a>
+      </div>
+   </li>
+  </UL>
+</nav>
+<div class="booklist">
+		<div class="label"></div>
+		</div>
+		<div class ="list">
+	<table>
+		<tr>
+			<th>書籍名</th>
+			<td><input type="text" name="title" id="title" placeholder="　※入力必須" class = "box1"></td>
+			</tr>
+			<tr>
+			<th>作者</th>
+			<td><input type="text" name="author" id="author" placeholder="　※入力必須" class = "box2"></td>
+			</tr>
+			<tr>
+			<th>出版社</th>
+			<td> <input type="text" name="publishere" id="publisher" class = "box1"></td>
+			</tr>
+			<tr>
+			<th>ジャンル</th>
+			<td><input type="text" name="janru" id="janru" class = "box1"></td>
+			</tr>
+			<tr>
+			<th>書籍購入日</th>
+			<td><input type="text" name="bought_on" id="bought_on" placeholder="　YYYY/MM/DD" class = "box2"></td>
+			</tr>
+			<tr>
+			<th>書籍購入者</th>
+			<td><input type="text" name="bought_by" id="bought_by" class = "box2"></td>
+		</tr>
+	</table>
+	<div id="add-button"></div>
+	<div id="add-button2"></div>
+	<div class="space"></div>
+   </div>
 </body>
 </html>

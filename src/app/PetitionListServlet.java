@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,11 +25,13 @@ public class PetitionListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
 
-		String employeeid = request.getParameter("employeeid");
-		System.out.println("employeeid="+employeeid);
+		//String employeeid = request.getParameter("employeeid");
+		HttpSession session = request.getSession(true);
+		String employeeId = (String) session.getAttribute("empId");
+		//System.out.println("employeeid="+employeeid);
 
 		String sql = " select EMPLOYEE_ID, TITLE, AUTHOR, STATUS " + " from TR_REQUEST_BOOKS " +
-				" where 1=1 " + " and EMPLOYEE_ID = '"+employeeid+"'";
+				" where 1=1 " + " and EMPLOYEE_ID = '"+employeeId+"'";
 
 
 		List<petition> list = new ArrayList<>();

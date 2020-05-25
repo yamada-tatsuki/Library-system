@@ -3,27 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <title>マイページ</title>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="./Mypage.css" />
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
-<script type="text/javascript" src="Login.js"></script>
 <script type="text/javascript" src="Mypage.js"></script>
 </head>
-<body>
-<header><button id="js-logout-button" value="logout" >ログアウト</button></header>
- <nav>
-		<div><button onclick="">蔵書一覧</button></div>
-		<div><button onclick="">嘆願</button></div>
-		</nav>
-		<div id="table">
+<div class="header">
+	<div class ="header_inner">
+	 	<div class="header_logo"></div>
+		<div class ="header_logout">
+			<button id="logout"  value="logout"class="logout-button" >ログアウト</button>
+		</div>
+	</div>
+</div>
+
+<body id="all">
+
+<nav>
+  <UL>
+   <li class="var_nav"value="蔵書一覧" id="list" onclick="location.href='./MemberBooksList.html?role=MEMBER'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>蔵書一覧</span></a>
+      </div>
+   </li>
+   <li class="var_nav" value="嘆願" id="request"onclick="location.href='./MemberPetition.html'">
+      <div class="link_bg"></div>
+      <div class="link_title">
+        <div class=icon>
+        <i class="icon"></i>
+        </div>
+        <a class="text"><span>嘆願</span></a>
+      </div>
+   </li>
+  </UL>
+</nav>
+<div class="booklist">
+		<div class="label"></div>
+		</div>
+		<div class ="list">
+			<div id="table">
 		<table id="syainData">
 		<tr>
-		<th>タイトル</th>
+		<th>書籍名</th>
 		<th>作者</th>
-		<th>ジャンル</th>
 		<th>出版社</th>
+		<th>ジャンル</th>
 		<th>返却期限</th>
+		<th>返却</th>
 		</tr>
 		</table>
 		</div>
+	</div>
 </body>
 </html>

@@ -1,3 +1,19 @@
+function judgAjax() {
+	$.ajax({
+		type : 'GET',
+		url : '/myFirstApp/SessionJudgServlet',
+		dataType : 'json',
+		async : false,
+		success : function(json) {
+			console.log(json);
+			if(json.result === "no"){
+				var result ='<a href="./Login.html">'+"ログインしてください"+'</a>'
+				$('#all').html(result )
+			}
+		}
+	});
+}
+
 /* 商品情報を登録するファンクション */
 var registItem = function () {
 	var inputItemTitle=$('#title').val();
@@ -27,6 +43,7 @@ var registItem = function () {
 			console.log('返却値', json);
 			// 登録完了のアラート
 			alert('登録が完了しました');
+			location.reload();
 		},
 		error:function(XMLHttpRequest, textStatus, errorThrown){
 			// サーバーとの通信に失敗した時の処理
@@ -35,13 +52,10 @@ var registItem = function () {
 		}
 	});
 }
-
-
 //編集機能
 var change = function(){
 	console.log('aaa');
 	//ディスプレイから表示を消す
-
 	var inputItemTitle=$("#title").val();
 	var inputItemAuthor=$('#author').val();
 	var inputItemPublisher=$('#publisher').val();
@@ -49,7 +63,6 @@ var change = function(){
 	var inputItemBoughtOn=$('#bought_on').val();
 	var inputItemBoughtBy=$('#bought_by').val();
 	var bookId=getParam('bookId');
-
 	var requestQuery = {
 			itemTitle:inputItemTitle,
 			itemAuthor:inputItemAuthor,
@@ -93,30 +106,25 @@ function getParam(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-
 function GetParameter(){
 	var parameter  = location.search.substring( 1, location.search.length );
 	parameter = decodeURIComponent( parameter );
 	parameter = parameter.split('=')[1];
-
 	if(!parameter){
-	$('#add-button').html('<button id="register-button" onclick="registItem()">登録</button>')
+	$('#add-button').html('<button id="register-button" class="regist" onclick="registItem()">登録</button>')
 		console.log('ない')
 	}else{
-
-	$('#add-button').html('<button id="change-button" onclick="change()">編集</button>')
-	$('#add-button2').html('<button id="return-button" onclick="location.href=\'./ManagerBooksList.html?role=MANAGER\'">戻る</button>')
+	$('#add-button').html('<button id="change-button" class="edit" onclick="change()">変更</button>')
+	$('#add-button2').html('<button id="return-button" class="return" onclick="location.href=\'./ManagerBooksList.html?role=MANAGER\'">キャンセル</button>')
 		console.log('ある')
 	}
 }
-
 /**
  * 読み込み時の動作
  */
 $(document).ready(function() {
+	judgAjax();
 	// 登録ボタンを押したときのイベント
-	$('#js-register').click(registItem);
-
+	//$('#js-register').click(registItem);
 	GetParameter();
-
 });

@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,7 +21,9 @@ public class PetitionServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// アクセス元のHTMLでｑに設定された値を取得して、String型の変数idに代入
-		String empID = request.getParameter("empID");
+		//String empID = request.getParameter("empID");
+		HttpSession session = request.getSession(true);
+		String employeeId = (String) session.getAttribute("empId");
 		String Title = request.getParameter("Title");
 		String Author = request.getParameter("Author");
 
@@ -29,7 +32,7 @@ public class PetitionServlet extends HttpServlet {
 		String pass = "wc";
 
 		String sql =" insert into TR_REQUEST_BOOKS " +" (EMPLOYEE_ID, TITLE, AUTHOR, STATUS) " +
-		" values " + "('"+empID+"', '"+Title+"', '"+Author+"', '申請中')";
+		" values " + "('"+employeeId+"', '"+Title+"', '"+Author+"', '申請中')";
 
 		System.out.println(sql);
 
