@@ -1,3 +1,19 @@
+function judgAjax() {
+	$.ajax({
+		type : 'GET',
+		url : '/myFirstApp/SessionJudgServlet',
+		dataType : 'json',
+		async : false,
+		success : function(json) {
+			console.log(json);
+			if(json.result === "no"){
+				var result ='<a href="./Login.html">'+"ログインしてください"+'</a>'
+				$('#all').html(result )
+			}
+		}
+	});
+}
+
 
 var userRole;
 
@@ -315,7 +331,7 @@ function logout() {
 
 
 $(document).ready(function(){
-
+	judgAjax();
 	executeAjax();
 	pulldownList();
 

@@ -9,10 +9,10 @@
 <script type="text/javascript" src="jquery-1.10.2.js"></script>
 <script type="text/javascript" src="ManagerBookDetail.js"></script>
 </head>
-<body>
+<body id="all">
 	<!-- ヘッダー -->
 	<div class="header">
-	<input type="button" value="ログアウト" id="logout">
+	<button id="logout"  value="logout" >ログアウト</button>
 	</div>
 	<!-- メインコンテンツ -->
 	<div class="content">
@@ -53,7 +53,7 @@
 			</table>
 		</div>
 		</div>
-		<button id="js-rental-button">借りる</button>
+		<div id="borrow"></div>
 		<p>
 		<button id="js-cancel-button" onclick="location.href='./ManagerBooksList.html?role=MANAGER'">一覧に戻る</button>
 </body>

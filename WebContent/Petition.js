@@ -1,3 +1,18 @@
+function judgAjax() {
+	$.ajax({
+		type : 'GET',
+		url : '/myFirstApp/SessionJudgServlet',
+		dataType : 'json',
+		async : false,
+		success : function(json) {
+			console.log(json);
+			if(json.result === "no"){
+				var result ='<a href="./Login.html">'+"ログインしてください"+'</a>'
+				$('#all').html(result )
+			}
+		}
+	});
+}
 function executeAjax3() {
 	//var emp = ;
 	//var requestQuery = { employeeId : employeeId} ;
@@ -81,6 +96,7 @@ function logout() {
 }
 $(document).ready(function () {
 	//'use strict';
+	judgAjax();
 	$('#petition').click(add);
 	// 初期表示用
 	executeAjax3();

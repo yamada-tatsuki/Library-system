@@ -10,17 +10,17 @@
 		<script type="text/javascript" src="booksList.js"></script>
 </head>
 
-<body>
-<header><input type="button" value="ログアウト" id="logout"></header>
+<body id="all">
+<header><button id="logout"  value="logout" >ログアウト</button></header>
 <div id="zousho"></div>
 <article>
       <p>
            <label for="title">タイトル: </label>
-           <input type="text" name="title" id="title">
+           <input type="text" name="title" id="title" placeholder="入力必須">
        </p>
         <p>
            <label for="author">作者: </label>
-           <input type="text" name="author" id="author">
+           <input type="text" name="author" id="author" placeholder="入力必須">
        </p>
         <p>
            <label for="publisher">出版社: </label>
@@ -32,7 +32,7 @@
        </p>
        <p>
            <label for="bought_by">購入日: </label>
-           <input type="text" name="bought_on" id="bought_on">
+           <input type="text" name="bought_on" id="bought_on" placeholder="〇〇〇〇/〇〇/〇〇">
        </p>
        <p>
            <label for="bought_by">購入者: </label>

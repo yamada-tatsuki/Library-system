@@ -1,3 +1,18 @@
+function judgAjax() {
+	$.ajax({
+		type : 'GET',
+		url : '/myFirstApp/SessionJudgServlet',
+		dataType : 'json',
+		async : false,
+		success : function(json) {
+			console.log(json);
+			if(json.result === "no"){
+				var result ='<a href="./Login.html">'+"ログインしてください"+'</a>'
+				$('#all').html(result )
+			}
+		}
+	});
+}
 /* 商品情報を登録するファンクション */
 var registItem = function () {
 	var inputItemTitle=$('#title').val();
@@ -27,6 +42,7 @@ var registItem = function () {
 			console.log('返却値', json);
 			// 登録完了のアラート
 			alert('登録が完了しました');
+			location.reload();
 		},
 		error:function(XMLHttpRequest, textStatus, errorThrown){
 			// サーバーとの通信に失敗した時の処理
@@ -116,6 +132,7 @@ function GetParameter(){
 $(document).ready(function() {
 	// 登録ボタンを押したときのイベント
 	//$('#js-register').click(registItem);
+	judgAjax();
 
 	GetParameter();
 

@@ -1,3 +1,19 @@
+function judgAjax() {
+	$.ajax({
+		type : 'GET',
+		url : '/myFirstApp/SessionJudgServlet',
+		dataType : 'json',
+		async : false,
+		success : function(json) {
+			console.log(json);
+			if(json.result === "no"){
+				var result ='<a href="./Login.html">'+"ログインしてください"+'</a>'
+				$('#all').html(result )
+			}
+		}
+	});
+}
+
 function executeAjax () {
 	'use strict';
 
@@ -36,11 +52,15 @@ function executeAjax () {
 $(document).ready(function () {
 	'use strict';
 	// 初期表示用
+	judgAjax();
 	 executeAjax();
 	// $('.js-return').click((e)=>DeleteItem($(e.currentTarget).attr('id')));
+	 $('#logout').click(logout);
+
 
 
 });
+
 function DeleteItem (bookId){
 	var id = bookId;
 	var requestQuery={bookId : id};
@@ -66,6 +86,35 @@ function DeleteItem (bookId){
 			}
 		},
 		error:function(XMLHttpRequest, textStatus, errorThrown){
+			// サーバーとの通信に失敗した時の処理
+			alert('データの通信に失敗しました');
+			console.log(errorThrown)
+		}
+	});
+}
+function logout() {
+	// 入力されたユーザーIDとパスワード
+	var requestQuery = {
+		loginRequest : $(this).attr('value'),
+	};
+	// サーバーからデータを取得する
+	$.ajax({
+		type : 'GET',
+		dataType : 'json',
+		url : '/myFirstApp/LoginLogoutServlet',// url変えろ
+		data : requestQuery,
+		success : function(json) {
+			if (json.result === "ok") {
+				alert('ログインして');
+				// 画面遷移
+
+			} else {
+				alert('ログアウトしました。');
+				location.href = 'Login.html';
+			}
+
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
 			alert('データの通信に失敗しました');
 			console.log(errorThrown)

@@ -1,4 +1,18 @@
-
+function judgAjax() {
+	$.ajax({
+		type : 'GET',
+		url : '/myFirstApp/SessionJudgServlet',
+		dataType : 'json',
+		async : false,
+		success : function(json) {
+			console.log(json);
+			if(json.result === "no"){
+				var result ='<a href="./Login.html">'+"ログインしてください"+'</a>'
+				$('#all').html(result )
+			}
+		}
+	});
+}
 function GetQueryTitle() {
     var result = new Object();
     if (1 < document.location.search.length) {
@@ -24,10 +38,8 @@ function GetQueryTitle() {
     }
     return result;
 }
-
 var paramn = GetQueryTitle();
 var titlename = paramn["title"];
-
 function executeAjax () {
 	'use strict';
 	var requestQuery = { title : titlename} ;
@@ -38,19 +50,15 @@ function executeAjax () {
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
-
 			console.log(titlename);
 			for (var i = 0; i < json.length; i++) {
-
-
 				var elements = json[i];
-				if(elements.boughtOn !=null){
+				if(elements.boughtOn!=null){
 				var s = elements.boughtOn;
 				var str = s.replace( /-/g, '/' );
 				var ymd =  str.substr(0, 10);
 				}
 				console.log(ymd);
-
 				$('#js-title').html(elements.title);
 				$('#js-author').html(elements.author);
 				$('#js-publisher').html(elements.publisher);
@@ -59,12 +67,52 @@ function executeAjax () {
 				$('#js-boughtby').html(elements.boughtBy);
 				$('#js-boughton').html(ymd);
 				$('#js-renddata').html(elements.rendData);
-
+				var row = '<input type="button" value="借りる" id="borrow" onclick="borrowBooks(\''+elements.bookId+'\')">'
+				$('#borrow').append(row);
 			}
 		}
 	});
 }
-
+//日付を取得
+function getDate(day) {
+	  var date = new Date();
+	  date.setDate(date.getDate() + day);
+	  var year  = date.getFullYear();
+	  var month = date.getMonth() + 1;
+	  var day   = date.getDate();
+	   var today = String(year) + "-" + String(month) + "-" + String(day);
+	  return today;
+	}
+//貸出機能
+function borrowBooks(bookId){
+	var id = bookId;
+	var requestQuery = {
+		bookId : id,
+		today: getDate(0),
+		dueDate : getDate(14)
+	};
+	console.log(requestQuery);
+	$.ajax({
+		type:'POST',
+		url : '/myFirstApp/BorrowBooksServlet',
+		dataType : 'json',
+		data : requestQuery,
+		success : function(json){
+			console.log(json);
+			if(json !== '貸出中'){
+				alert('書籍を借りました')
+				document.location.reload()
+			}else{
+				alert('貸出中です。')
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			// サーバーとの通信に失敗した時の処理
+			alert('データの通信に失敗しました');
+			console.log(errorThrown)
+		}
+	});
+}
 //ログアウト機能
 function logout() {
 	// 入力されたユーザーIDとパスワード
@@ -81,12 +129,10 @@ function logout() {
 			if (json.result === "ok") {
 				alert('ログインして');
 				// 画面遷移
-
 			} else {
 				alert('ログアウトしました。');
 				location.href = 'Login.html';
 			}
-
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
@@ -95,15 +141,11 @@ function logout() {
 		}
 	});
 }
-
 $(document).ready(function () {
 	'use strict';
-
 	// 初期表示用
+	judgAjax();
 	executeAjax();
 	$('#logout').click(logout);
-
-
 	//$('#table_data').ready('road',executeAjax);
-
 });
