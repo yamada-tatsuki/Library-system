@@ -1,5 +1,3 @@
-
-
 function judgAjax() {
 	$.ajax({
 		type : 'GET',
@@ -15,7 +13,6 @@ function judgAjax() {
 		}
 	});
 }
-
 var userRole;
 //URLからパラメータの部分を取得
 function GetQueryString() {

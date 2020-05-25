@@ -73,10 +73,8 @@
 			<div class="inline-block">
 			<div class="pulldown">
 			<select name="genre" id="genre" class="round">
-
 			<option value='' disabled selected style='display:none;'>ジャンル</option>
 			</select></div></div>
-			</form></div>
 
 			<div class="inline-block">
 			<div class="pulldown2">
@@ -85,12 +83,22 @@
 			<option></option>
 			<option>昇順</option>
 			<option>降順</option>
-
-
 		</select></div></div>
 
-
-		<!-- マイページボタンと嘆願ボタンはidを共通にする -->
-
-
+			<div class="inline-block">
+			<input type="button" value="検索" id="search" class="search2"></input>
+			</div>
+		</form>
+			<table id="booksTable">
+				<tr>
+				<th>書籍名</th>
+				<th>作者</th>
+				<th>貸出状況</th>
+				<th>レンタル</th>
+				<th>書籍編集</th>
+				<th>書籍削除</th>
+				</tr>
+			</table>
+		</div>
+</body>
 </html>

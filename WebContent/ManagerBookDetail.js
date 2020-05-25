@@ -14,6 +14,7 @@ function judgAjax() {
 	});
 }
 
+
 function GetQueryTitle() {
     var result = new Object();
     if (1 < document.location.search.length) {
@@ -39,8 +40,10 @@ function GetQueryTitle() {
     }
     return result;
 }
+
 var paramn = GetQueryTitle();
 var titlename = paramn["title"];
+
 function executeAjax () {
 	'use strict';
 	var requestQuery = { title : titlename} ;
@@ -51,15 +54,20 @@ function executeAjax () {
 		dataType : 'json',
 		data :requestQuery,
 		success : function (json) {
+
 			console.log(titlename);
 			for (var i = 0; i < json.length; i++) {
+
+
 				var elements = json[i];
-				if(elements.boughtOn!=null){
+				if(elements.boughtOn != null){
 				var s = elements.boughtOn;
 				var str = s.replace( /-/g, '/' );
 				var ymd =  str.substr(0, 10);
 				}
+
 				console.log(ymd);
+
 				$('#js-title').html(elements.title);
 				$('#js-author').html(elements.author);
 				$('#js-publisher').html(elements.publisher);
@@ -146,42 +154,6 @@ function logout() {
 			}
 
 		},
-
-	});
-}
-//日付を取得
-function getDate(day) {
-	  var date = new Date();
-	  date.setDate(date.getDate() + day);
-	  var year  = date.getFullYear();
-	  var month = date.getMonth() + 1;
-	  var day   = date.getDate();
-	   var today = String(year) + "-" + String(month) + "-" + String(day);
-	  return today;
-	}
-//貸出機能
-function borrowBooks(bookId){
-	var id = bookId;
-	var requestQuery = {
-		bookId : id,
-		today: getDate(0),
-		dueDate : getDate(14)
-	};
-	console.log(requestQuery);
-	$.ajax({
-		type:'POST',
-		url : '/myFirstApp/BorrowBooksServlet',
-		dataType : 'json',
-		data : requestQuery,
-		success : function(json){
-			console.log(json);
-			if(json !== '貸出中'){
-				alert('書籍を借りました')
-				document.location.reload()
-			}else{
-				alert('貸出中です。')
-			}
-		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
 			// サーバーとの通信に失敗した時の処理
 			alert('データの通信に失敗しました');
@@ -189,40 +161,13 @@ function borrowBooks(bookId){
 		}
 	});
 }
-//ログアウト機能
-function logout() {
-	// 入力されたユーザーIDとパスワード
-	var requestQuery = {
-		loginRequest : $(this).attr('value'),
-	};
-	// サーバーからデータを取得する
-	$.ajax({
-		type : 'GET',
-		dataType : 'json',
-		url : '/myFirstApp/LoginLogoutServlet',// url変えろ
-		data : requestQuery,
-		success : function(json) {
-			if (json.result === "ok") {
-				alert('ログインして');
-				// 画面遷移
-			} else {
-				alert('ログアウトしました。');
-				location.href = 'Login.html';
-			}
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) {
-			// サーバーとの通信に失敗した時の処理
-			alert('データの通信に失敗しました');
-			console.log(errorThrown)
-		}
-	});
-}
-
 
 $(document).ready(function () {
 	'use strict';
 	judgAjax();
 	// 初期表示用
 	executeAjax();
+	$('#logout').click(logout);
+	//$('#table_data').ready('road',executeAjax);
 
 });
