@@ -83,7 +83,7 @@ var change = function(){
 			console.log('返却値', result);
 			// 登録完了のアラート
 			if(result==true){
-			alert('編集が完了しました');
+			alert('変更が完了しました');
 			location.reload();
 			}
 			else if(result==false){

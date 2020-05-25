@@ -114,10 +114,10 @@ function booksSearch(){
 				'<th>'+'書籍名'+'</th>'+
 				'<th>'+'作者'+'</th>'+
 				'<th>'+'貸出状況'+'</th>'+
-				'<th>'+'レンタル'+'</th>'+
-				'<th>'+'書籍編集'+'</th>'+
-				'<th>'+'書籍削除'+'</th>'+
-				'</tr>'
+				'<th>'+'レンタル'+'</th>'
+				if(userRole === "MANAGER"){
+					columName +='<th>'+'書籍編集'+'</th>'+	'<th>'+'書籍削除'+'</th>'+'</tr>'
+					}
 				$('#booksTable').append(columName);
 				for(var i=0; i<json.length; i++){
 					var row = '<tr>'
